@@ -39,7 +39,7 @@ An unofficial custom Beamerposter theme for Florida State University (FSU) Mathe
 
 ## Contact
 
-Created by Rafiq Islam
-Ph.D. Candidate in Mathematics
+Created by Rafiq Islam  
+Ph.D. Candidate in Mathematics  
 Florida State University 
 
