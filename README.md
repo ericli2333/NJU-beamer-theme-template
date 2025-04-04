@@ -2,7 +2,7 @@
 
 An unofficial custom Beamerposter theme for Florida State University (FSU) Mathematics as well as other departments, designed for use in academic presentations and conferences.
 
-## �� Features
+## Features
 
 - Custom header with logos
 - FSU Garnet & Gold color scheme
@@ -10,7 +10,7 @@ An unofficial custom Beamerposter theme for Florida State University (FSU) Mathe
 - Supports figure/table numbering
 - Poster layout with 3-column setup
 
-## �� How to Use in Overleaf
+## How to Use in Overleaf
 
 ### Option 1: Clone This Project
 
@@ -24,7 +24,7 @@ An unofficial custom Beamerposter theme for Florida State University (FSU) Mathe
 1. Click the green **Code** button → `Download ZIP`
 2. Upload contents to Overleaf or use locally
 
-## �� Files Included
+## Files Included
 
 - `beamerthemefsu.sty` – main theme
 - `beamercolorthemefsucolor.sty` – color definitions
@@ -33,11 +33,11 @@ An unofficial custom Beamerposter theme for Florida State University (FSU) Mathe
 - `images/` - Additional images that you may need
 - `ref.bib` - Reference or bibliography file
 
-## �� Sample Output
+## Sample Output
 
 ![screenshot](images/sample-poster-preview.png)
 
-## �� Contact
+## Contact
 
 Created by Rafiq Islam
 Ph.D. Candidate in Mathematics
