@@ -1,0 +1,159 @@
+% Custom Beamerposter Theme: fsutheme
+
+\ProvidesPackage{beamerthemefsu}
+
+% ======================
+% Required Packages
+% ======================
+\RequirePackage{fontspec}
+\RequirePackage{calc}
+\RequirePackage{ragged2e}
+\RequirePackage{changepage}
+
+% ======================
+% Font Setup (XeLaTeX/LuaLaTeX)
+% ======================
+\setsansfont{Lato}[ % Requires installation of Lato font
+  UprightFont=*-Regular,
+  ItalicFont=*-Italic,
+  BoldFont=*-Bold,
+  BoldItalicFont=*-BoldItalic
+]
+
+\newfontfamily\FSUHeaderFont{Raleway}[
+  UprightFont=*-Bold,
+  BoldFont=*-ExtraBold
+]
+
+\usefonttheme{professionalfonts}
+
+% ======================
+% Default Font Settings
+% ======================
+\setbeamerfont{headline title}{family=\FSUHeaderFont, size=\Huge, series=\bfseries}
+\setbeamerfont{headline author}{size=\Large}
+\setbeamerfont{headline institute}{size=\normalsize}
+\setbeamerfont{block title}{family=\FSUHeaderFont, size=\large, series=\bfseries}
+\setbeamerfont{heading}{family=\FSUHeaderFont, series=\bfseries}
+\setbeamerfont{footline}{size=\normalsize}
+
+% ======================
+% Logo Management
+% ======================
+\newlength{\logowidth}
+\setlength{\logowidth}{10cm}
+
+\newcommand{\logoleft}[1]{\newcommand{\insertlogoleft}{#1}}
+\newcommand{\logoright}[1]{\newcommand{\insertlogoright}{#1}}
+
+% ======================
+% Header / Title Bar
+% ======================
+\setbeamertemplate{headline}{
+  \begin{beamercolorbox}{headline}
+    \begin{columns}
+      \begin{column}{0.2\paperwidth}
+        \ifdefined\insertlogoleft
+        \vspace*{2ex}
+        \hspace{7ex}
+        \insertlogoleft
+        \fi
+      \end{column}
+      \begin{column}{0.6\paperwidth}
+        \centering
+        \vskip2ex
+        {\usebeamerfont{headline title} \inserttitle \par}
+        \vskip1ex
+        {\usebeamerfont{headline author} \insertauthor \par}
+        \vskip0.5ex
+        {\usebeamerfont{headline institute} \insertinstitute \par}
+      \end{column}
+      \begin{column}{0.2\paperwidth}
+        \ifdefined\insertlogoright
+        \vspace*{0.5ex}
+        \hspace{3.5in}
+        \insertlogoright
+        \hspace{2ex}
+        \fi
+      \end{column}
+    \end{columns}
+    \vspace{1ex}
+    \begin{beamercolorbox}[wd=\paperwidth,ht=1ex]{headline rule}
+    \end{beamercolorbox}
+  \end{beamercolorbox}
+}
+
+% ======================
+% Footer Content
+% ======================
+\newcommand{\footercontent}[1]{\newcommand{\insertfootercontent}{#1}}
+
+\setbeamertemplate{footline}{
+  \ifdefined\insertfootercontent
+  \begin{beamercolorbox}[wd=\paperwidth,ht=3ex,dp=2ex]{footline}
+    \usebeamerfont{footline} \insertfootercontent
+    \hspace{\sepwidth}
+  \end{beamercolorbox}
+  \fi
+}
+
+% ======================
+% Block Styling
+% ======================
+\setbeamertemplate{block begin}{
+  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block title}
+  \vskip 0pt
+    \usebeamerfont{block title}\insertblocktitle
+    \vskip-1.25ex
+    \begin{beamercolorbox}[colsep=0.025ex]{block separator}
+    \end{beamercolorbox}
+  \end{beamercolorbox}
+  \vskip-0.5ex
+  \begin{beamercolorbox}[colsep*=0ex]{block body}
+  \justifying
+}
+\setbeamertemplate{block end}{
+  \end{beamercolorbox}
+  \vspace*{1ex}
+}
+
+% Alert block
+\setbeamertemplate{block alerted begin}{
+  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block alerted title}
+  \vskip 0pt
+    \usebeamerfont{block title}\insertblocktitle
+    \vskip-1.25ex
+    \begin{beamercolorbox}[colsep=0.025ex]{block alerted separator}
+    \end{beamercolorbox}
+  \end{beamercolorbox}
+  \vskip-1ex
+  \begin{beamercolorbox}[colsep*=0ex]{block alerted body}
+  \justifying
+}
+\setbeamertemplate{block alerted end}{
+  \end{beamercolorbox}
+  \vspace*{1ex}
+}
+
+% Example block
+\setbeamertemplate{block example begin}{
+  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block example title}
+  \vskip0pt
+    \usebeamerfont{block title}\insertblocktitle
+    \vskip-1.25ex
+    \begin{beamercolorbox}[colsep=0.05ex]{block example separator}
+    \end{beamercolorbox}
+  \end{beamercolorbox}
+  \vskip-1ex
+  \begin{beamercolorbox}[colsep*=0ex]{block example body}
+  \justifying
+}
+\setbeamertemplate{block example end}{
+  \end{beamercolorbox}
+  \vspace*{1ex}
+}
+
+%===================== Table and Images===============
+\setbeamertemplate{caption}[numbered]
+\setbeamertemplate{caption label separator}{:}
+\setbeamertemplate{caption label format}{\insertcaptionname~\insertcaptionnumber\hspace{0.2em}}

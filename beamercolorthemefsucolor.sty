@@ -1,0 +1,49 @@
+% beamercolorthemefsucolor.sty
+% Custom color theme for FSU Beamerposter
+
+\ProvidesPackage{beamercolorthemefsucolor}
+
+% ========== Color Definitions ==========
+\definecolor{FSUGarnet}{RGB}{120, 47, 64}
+\definecolor{FSUGold}{RGB}{206, 184, 136}
+\definecolor{FSUWhite}{RGB}{255,255,255}
+\definecolor{FSUBlack}{RGB}{0,0,0}
+\definecolor{FSULightGray}{HTML}{f4f4f4}
+
+% ========== Background & Base Text ==========
+\setbeamercolor{background canvas}{bg=FSUWhite}
+\setbeamercolor{normal text}{fg=FSUBlack}
+\setbeamercolor{alerted text}{fg=FSUGarnet}
+
+% ========== Title & Header ==========
+\setbeamercolor{headline}{bg=FSUGarnet, fg=FSUWhite}
+\setbeamercolor{headline rule}{bg=FSUGarnet}
+\setbeamercolor{title}{fg=FSUWhite, bg=FSUGarnet}
+\setbeamercolor{headline title}{fg=FSUWhite}
+\setbeamercolor{headline author}{fg=FSUWhite}
+\setbeamercolor{headline institute}{fg=FSUWhite}
+
+% ========== Footer ==========
+\setbeamercolor{footline}{fg=FSUWhite, bg=FSUGarnet}
+
+% ========== Blocks ==========
+\setbeamercolor{block title}{fg=FSUGarnet, bg=FSUGold}
+\setbeamercolor{block body}{fg=FSUBlack, bg=FSULightGray}
+\setbeamercolor{block alerted title}{fg=FSUWhite, bg=FSUGarnet}
+\setbeamercolor{block alerted body}{fg=FSUBlack, bg=FSULightGray}
+\setbeamercolor{block example title}{fg=FSUBlack, bg=FSUWhite}
+\setbeamercolor{block example body}{fg=FSUBlack, bg=FSUWhite}
+
+% ========== Lists ==========
+\setbeamercolor{item projected}{fg=FSUWhite, bg=FSUGarnet}
+\setbeamercolor{itemize item}{fg=FSUGarnet}
+\setbeamercolor{enumerate item}{fg=FSUGarnet}
+
+% ========== Navigation (Hidden) ==========
+\setbeamercolor{navigation symbols}{fg=FSUGarnet}
+\beamertemplatenavigationsymbolsempty
+
+% ========== Captions and Table of Contents ==========
+\setbeamercolor{caption name}{fg=FSUGarnet}
+\setbeamercolor{section in toc}{fg=FSUGarnet, bg=FSULightGray}
+\setbeamercolor{subsection in toc}{fg=FSUBlack, bg=FSULightGray}

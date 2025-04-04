@@ -1,0 +1,206 @@
+\documentclass{beamer}
+\usepackage[T1]{fontenc}
+\usepackage[size=custom, width=91.44, height=60.94, scale=1.0]{beamerposter}
+
+% Theme and color theme
+\usetheme{fsu}
+\usecolortheme{fsucolor}
+
+% Required packages
+\usepackage{graphicx,lmodern,booktabs,tikz,pgfplots,amsfonts,amsmath,amssymb,amsthm,hyperref,caption,newtxmath}
+
+% Tikz Customization
+\usetikzlibrary{intersections}
+\usepgfplotslibrary{fillbetween}
+
+% PGFPlots config
+\pgfplotsset{compat=1.14}
+
+% Dimensions for column layout
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.009\paperwidth}
+\setlength{\colwidth}{0.3\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% Title and authors
+\title{Mathematical Foundations of Spectral Graph Theory}
+\author{Issac Newton \inst{1} \and Alan Turing \inst{1} \and Leonard Euler \inst{2}}
+\institute[shortinst]{\inst{1} University of Cambridge \qquad \inst{2} University of Basel}
+
+% Footer content
+\footercontent{
+\href{https://github.com/}{https://github.com} \hfill Directed Reading Program 2025\hfill Graduate Student Council, FSU Mathematics
+}
+
+% Logos (replace with your real paths)
+\logoleft{\includegraphics[height=7cm]{logo/fsu-logo.png}}
+\logoright{\includegraphics[height=7cm]{logo/fsumath.png}}
+
+\begin{document}
+
+\begin{frame}[t]
+\begin{columns}[t]
+
+% COLUMN 1
+\begin{column}{\colwidth}
+\begin{block}{Introduction}
+This is an unofficial template for Florida State Mathematics poster presentation prepared by Rafiq Islam\cite{fsumathposter25}. Here is how you use plain text\hfill\\
+Spectral graph theory studies properties of a graph in relationship to the eigenvalues and eigenvectors of matrices associated with the graph, such as the adjacency matrix $A$, degree matrix $D$, and Laplacian $L = D - A$.
+\end{block}
+
+\begin{block}{Mathematical Background}
+    Let $G = (V, E)$ be an undirected graph. The Laplacian matrix is given by
+        \[
+        L_{ij} =
+        \begin{cases}
+        \deg(v_i) & \text{if } i = j, \\
+        -1 & \text{if } i \neq j \text{ and } (i,j) \in E, \\
+        0 & \text{otherwise}.
+        \end{cases}
+        \]
+
+        The eigenvalues of $L$ reveal key structural properties such as connectivity.
+\end{block}
+
+\begin{block}{Tikz Picture}
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}[scale=4]
+            \draw[thick] (0,0) ellipse (1.2 and 0.4);
+            \draw[thick] (0,-2) ellipse (1.2 and 0.4);
+            \draw[thick] (-1.2,0) -- (-1.2,-2);
+            \draw[thick] (1.2,0) -- (1.2,-2);
+            \node at (0, -2.5) {radius $r = 5$};
+            \node[right] at (1.3,-1) {height $h = 10$};
+        \end{tikzpicture}
+        \caption{Spherical Cylinder with radius $r=5$m and height $h=10$ m}
+        \label{fig:fig1}
+    \end{figure}
+\end{block}
+
+\begin{block}{Objectives}
+\begin{itemize}
+  \item Explore classical ML models for text classification
+  \item Apply preprocessing techniques like TF-IDF
+  \item Evaluate models using accuracy, precision, recall
+\end{itemize}
+\end{block}
+
+\begin{alertblock}{Why Text Classification?}
+This is an alert block where you can mention an important fact or result.
+\begin{itemize}
+  \item Used in spam detection, sentiment analysis, topic labeling
+  \item Helps automate information filtering at scale
+\end{itemize}
+\end{alertblock}
+\end{column}
+
+\separatorcolumn
+
+% COLUMN 2
+\begin{column}{\colwidth}
+\begin{block}{Methodology}
+Numbered items where the number elements will display in garnet color.\hfill
+\begin{enumerate}
+  \item Dataset cleaning: lowercasing, punctuation removal
+  \item Tokenization and stop-word removal
+  \item Feature extraction via TF-IDF
+  \item Training Logistic Regression, Naive Bayes, and SVM
+\end{enumerate}
+\end{block}
+
+\begin{block}{Visualization}
+\begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/seminole.png}
+    \caption{Florida State Seminole (Photo credit: \href{https://en.wikipedia.org/wiki/Florida_State_Seminoles}{Wikipedia})}
+    \label{fig:enter-label}
+\end{figure}
+\end{block}
+
+\begin{block}{Table}
+    \begin{center}
+        \renewcommand{\arraystretch}{1.4}
+        \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Graph} & \textbf{Nodes ($n$)} & \textbf{Edges ($m$)} & \textbf{2nd Eigenvalue $\lambda_2$} \\
+        \hline
+        Cycle $C_6$ & 6 & 6 & 1.0 \\
+        Complete $K_4$ & 4 & 6 & 4.0 \\
+        Star $S_5$ & 5 & 4 & 1.0 \\
+        Path $P_5$ & 5 & 4 & 0.3819 \\
+        Random $G_{10,0.5}$ & 10 & 23 & 1.823 \\
+        \hline
+        \end{tabular}
+        \vspace{0.5em}
+        \captionof{table}{Comparison of different graphs and their spectral properties.}
+    \end{center}
+\end{block}
+
+\end{column}
+
+
+\separatorcolumn
+
+% COLUMN 3
+\begin{column}{\colwidth}
+\begin{exampleblock}{More General block}
+    The more accurate approximation could be found by increasing the number of sub-intervals. That is
+    \begin{equation}
+        \int_0^{20} f(x)dx = \lim_{n \to \infty} \sum_{i=1}^n f(x_i^*)\Delta x\approx 144.15
+    \end{equation}    
+    irrespective of the left-hand point or the right-hand point we take to draw the rectangles.
+        \begin{center}
+        \begin{tikzpicture}
+            \begin{axis}[
+                width=14cm,
+                height=7cm,
+                xmin=-1.5, xmax=22,
+                ymin=-20, ymax=30,
+                axis lines=middle,
+                xlabel={$x$},
+                ylabel={$f(x)$},
+                samples=300,
+                domain=0:22,
+                grid=both,
+            ]
+            
+            % Area under the curve
+            \addplot [domain=-1.5:22, samples=300, name path=f, thick, color=blue]
+            {1+0.25*x+sin(deg(x)) + 20*sin(deg(x)/2)};
+
+            \path [name path=xaxis]
+            (\pgfkeysvalueof{/pgfplots/xmin},0) --
+            (\pgfkeysvalueof{/pgfplots/xmax},0);
+
+            \addplot[blue!50, opacity=0.4] fill between [of=f and xaxis, soft clip={domain=-0:20}];
+            
+            \end{axis}
+        \end{tikzpicture}
+        \end{center}
+        This expression
+        \begin{equation*}
+            \int_0^{20} f(x)dx   
+        \end{equation*}
+        is called the definite integral that finds the area under and/or above the curve $f(x)$ and the $x$ axis.
+\end{exampleblock}
+
+\begin{exampleblock}{Conclusion}
+\begin{itemize}
+  \item SVM performed best with highest accuracy
+  \item TF-IDF improved performance over raw counts
+  \item Logistic Regression was more interpretable
+\end{itemize}
+\end{exampleblock}
+
+\begin{block}{References}
+\small
+\footnotesize{\bibliographystyle{plain}\bibliography{ref}}
+\end{block}
+\end{column}
+
+\end{columns}
+\end{frame}
+\end{document}
