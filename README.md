@@ -1,4 +1,4 @@
-# FSU Beamerposter Theme
+# FSU Beamerposter Theme (Unofficial)
 
 An unofficial custom Beamerposter theme for Florida State University (FSU) Mathematics as well as other majors, designed for use in academic presentations and conferences.
 
