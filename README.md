@@ -32,7 +32,9 @@ An unofficial custom **Beamerposter** and **presentation** theme designed for Fl
 ✅ Easy toggle between poster and presentation styles
 
 **Preview**  
-![Presentation Sample](images/presentation_sample.pdf)
+![Presentation Sample](images/photo-collage.png.png)  
+
+The complete [PDF can be found here](images/presentation_sample.pdf) 
 
 ---
 
