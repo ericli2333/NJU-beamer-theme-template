@@ -1,45 +1,50 @@
-% Custom Beamerposter Theme: fsutheme
+% Custom Unofficial Beamerposter Theme: fsutheme
 
-\ProvidesPackage{beamerthemefsu}
+\ProvidesPackage{beamerthemefsu}[2025/04/04 FSU Custom Theme Unofficial]
+\RequirePackage{kvoptions}
+\RequirePackage{etoolbox}
 
+\SetupKeyvalOptions{
+    family=fsutheme,
+    prefix=fsutheme@
+}
+
+\DeclareBoolOption[false]{presentation}
+\ProcessKeyvalOptions*
+\iffsutheme@presentation
+    \RequirePackage{ragged2e}
+    \setbeamerfont{headline institute}{size=\Large}
+    \setbeamertemplate{section in toc}[sections numbered]
+\else 
 % ======================
-% Required Packages
+% Font Setup (Times New Roman Look for pdfLaTeX)
 % ======================
-\RequirePackage{fontspec}
+\RequirePackage[T1]{fontenc}       % Proper font encoding
+\RequirePackage{mathptmx}          % Times text + math fonts
 \RequirePackage{calc}
 \RequirePackage{ragged2e}
 \RequirePackage{changepage}
-
-% ======================
-% Font Setup (XeLaTeX/LuaLaTeX)
-% ======================
-\setsansfont{Lato}[ % Requires installation of Lato font
-  UprightFont=*-Regular,
-  ItalicFont=*-Italic,
-  BoldFont=*-Bold,
-  BoldItalicFont=*-BoldItalic
-]
-
-\newfontfamily\FSUHeaderFont{Raleway}[
-  UprightFont=*-Bold,
-  BoldFont=*-ExtraBold
-]
+\RequirePackage{pgffor}
+\RequirePackage{xcolor}
 
 \usefonttheme{professionalfonts}
 
 % ======================
 % Default Font Settings
 % ======================
-\setbeamerfont{headline title}{family=\FSUHeaderFont, size=\Huge, series=\bfseries}
+\setbeamerfont{headline title}{size=\Huge, series=\bfseries}
 \setbeamerfont{headline author}{size=\Large}
 \setbeamerfont{headline institute}{size=\normalsize}
-\setbeamerfont{block title}{family=\FSUHeaderFont, size=\large, series=\bfseries}
-\setbeamerfont{heading}{family=\FSUHeaderFont, series=\bfseries}
+\setbeamerfont{block title}{size=\large, series=\bfseries}
+\setbeamerfont{heading}{series=\bfseries}
 \setbeamerfont{footline}{size=\normalsize}
+\setbeamerfont{frametitle}{size=\Large}
+\fi 
 
 % ======================
 % Logo Management
 % ======================
+\newcommand{\presentationlogo}[1]{\newcommand{\insertpresentationlogo}{#1}}
 \newlength{\logowidth}
 \setlength{\logowidth}{10cm}
 
@@ -49,12 +54,79 @@
 % ======================
 % Header / Title Bar
 % ======================
+\iffsutheme@presentation
+
+\setbeamertemplate{title page}{
+  \begin{center}
+    % Title box centered with shadow
+    \begin{beamercolorbox}[wd=0.85\paperwidth, rounded=true, shadow=true, center]{title box}
+    \usebeamerfont{title}
+    \centering
+    \parbox{0.85\paperwidth}{\centering\inserttitle}
+    \end{beamercolorbox}
+
+    
+    \vspace{1cm}
+    {\usebeamerfont{author}\insertauthor\par}
+    
+    \vspace{0.5cm}
+    {\usebeamerfont{institute}\insertinstitute\par}
+    
+    \vspace{0.5cm}
+    {\usebeamerfont{date}\insertdate\par}
+
+    \vspace{0.51cm}
+    \ifdefined\insertpresentationlogo
+      \insertpresentationlogo
+    \fi
+  \end{center}
+}
+
+%=========Presentation Header=======
+\setbeamertemplate{headline}{
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=1.5ex, dp=1.5ex, center]{headline left}%
+      \centering
+      \vspace{-1ex}
+      \usebeamerfont{section in head/foot} \insertsectionhead
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=1.5ex, dp=1.5ex, center]{headline right}%
+      \centering
+      \vspace{-1.25ex}
+      \usebeamerfont{section in head/foot}
+      \ifx\insertframetitle\empty
+        % Do nothing
+      \else
+        \ifnum\value{framenumber}=1
+          % Title page: do nothing
+        \else
+          \ifx\insertframetitle\tableofcontentsname
+            % TOC page: do nothing
+          \else
+            \foreach \n in {\insertsectionstartpage,...,\insertsectionendpage}{
+              \ifnum\n=\insertframenumber
+                \hyperlink{slide\n}{\raisebox{0.15ex}{\large$\bullet$}}
+              \else
+                \hyperlink{slide\n}{\color{gray!60}\raisebox{0.15ex}{\small$\bullet$}}
+              \fi
+              \hspace{0.2em}
+            }
+          \fi
+        \fi
+      \fi
+    \end{beamercolorbox}%
+  }
+}
+
+\else
+%==========Poster Header=======
 \setbeamertemplate{headline}{
   \begin{beamercolorbox}{headline}
     \begin{columns}
       \begin{column}{0.2\paperwidth}
         \ifdefined\insertlogoleft
-        \vspace*{2ex}
+        \vspace*{0.5ex}
         \hspace{7ex}
         \insertlogoleft
         \fi
@@ -82,10 +154,56 @@
     \end{beamercolorbox}
   \end{beamercolorbox}
 }
+\fi
+
+%==================== frame title ==========================
+\setbeamertemplate{frametitle}{
+    \vskip-0.2ex
+    \begin{beamercolorbox}[wd=\paperwidth, ht=3ex, dp=1.5ex, shadow=true]{frametitle}
+        \usebeamerfont{frametitle}\hspace{1.5ex}\insertframetitle
+    \end{beamercolorbox}
+    \vskip0.5ex
+}
 
 % ======================
 % Footer Content
 % ======================
+\iffsutheme@presentation
+\setbeamerfont{author in head/foot}{size=\scriptsize}
+\setbeamerfont{title in head/foot}{size=\scriptsize}
+\setbeamerfont{date in head/foot}{size=\scriptsize}
+\setbeamerfont{section in head/foot}{size=\scriptsize}
+\setbeamerfont{subsection in head/foot}{size=\scriptsize}
+
+%==========Presentation footer============
+\setbeamertemplate{footline}{
+
+  % ===== Bottom: Custom footer =====
+  \leavevmode%
+  \hbox{%
+    \begin{beamercolorbox}[wd=0.2\paperwidth,ht=2ex,dp=1.5ex,center]{footline left}%
+        \centering
+        \vspace{-0.8 ex}
+      \usebeamerfont{section in head/foot} \hspace{1ex}\insertshortauthor
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2ex,dp=1.5ex,center]{footline center}%
+      \centering
+      \vspace{-0.8ex}
+      \usebeamerfont{section in head/foot} 
+      \insertshorttitle
+    \end{beamercolorbox}%
+    \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2ex,dp=1.5ex,right]{footline right}%
+      \centering
+      \vspace{-1.2 ex}
+      \usebeamerfont{section in head/foot} 
+      \insertshortdate{}\hfill%
+      \insertframenumber{}/\inserttotalframenumber\hspace{1ex}
+    \end{beamercolorbox}%
+  }
+}
+
+\else 
+%=============Poster footer=============
 \newcommand{\footercontent}[1]{\newcommand{\insertfootercontent}{#1}}
 
 \setbeamertemplate{footline}{
@@ -96,19 +214,39 @@
   \end{beamercolorbox}
   \fi
 }
+\fi
 
 % ======================
 % Block Styling
 % ======================
+\iffsutheme@presentation
+
 \setbeamertemplate{block begin}{
-  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block title}
+  \begin{beamercolorbox}[wd=0.85\paperwidth,left, rounded=true, shadow=true, ht=1ex, dp=1ex]{block title}
+  \vspace{-2ex}
+    \usebeamerfont{block title}\insertblocktitle
+    \vskip-1.25ex
+    \begin{beamercolorbox}{block separator}
+    \end{beamercolorbox}
+  \end{beamercolorbox}
+  \begin{beamercolorbox}[wd=0.85\paperwidth, rounded=true, shadow=true]{block body}
+  \justifying
+}
+\setbeamertemplate{block end}{
+  \end{beamercolorbox}
+  \vspace*{1ex}
+}
+   
+\else
+\setbeamertemplate{block begin}{
+  \begin{beamercolorbox}[colsep*=0ex,dp=0.5ex,center, rounded=true, shadow=true]{block title}
   \vskip 0pt
     \usebeamerfont{block title}\insertblocktitle
     \vskip-1.25ex
     \begin{beamercolorbox}[colsep=0.025ex]{block separator}
     \end{beamercolorbox}
   \end{beamercolorbox}
-  \vskip-0.5ex
+  \vspace{0.9ex}
   \begin{beamercolorbox}[colsep*=0ex]{block body}
   \justifying
 }
@@ -119,14 +257,14 @@
 
 % Alert block
 \setbeamertemplate{block alerted begin}{
-  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block alerted title}
+  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center,, rounded=true, shadow=true]{block alerted title}
   \vskip 0pt
     \usebeamerfont{block title}\insertblocktitle
     \vskip-1.25ex
     \begin{beamercolorbox}[colsep=0.025ex]{block alerted separator}
     \end{beamercolorbox}
   \end{beamercolorbox}
-  \vskip-1ex
+  \vspace{0.5ex}
   \begin{beamercolorbox}[colsep*=0ex]{block alerted body}
   \justifying
 }
@@ -153,7 +291,18 @@
   \vspace*{1ex}
 }
 
+\fi
 %===================== Table and Images===============
 \setbeamertemplate{caption}[numbered]
-\setbeamertemplate{caption label separator}{:}
+\setbeamertemplate{caption label separator}{:\hspace{0.3em}}
 \setbeamertemplate{caption label format}{\insertcaptionname~\insertcaptionnumber\hspace{0.2em}}
+
+
+\makeatletter
+\patchcmd{\beamer@@frametitle}
+    {\gdef\insertframetitle}
+    {\hypertarget{slide\theframenumber}{}\gdef\insertframetitle}
+    {}{}
+\makeatother
+
+

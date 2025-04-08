@@ -1,0 +1,106 @@
+\documentclass{beamer}
+\usepackage[L7x]{fontenc}
+% This part is required to have FSU custom style
+\usetheme[presentation]{fsu}
+\usecolortheme[presentation]{fsucolor}
+% Uncomment the next line if you want your itemize items to appear as a bullet, instead of triangular shapes
+
+%\setbeamertemplate{itemize item}{$\bullet$}
+
+% Include the required packages here
+\usepackage{graphicx,booktabs,tikz,pgfplots,amsfonts,amsmath,amsthm,hyperref,caption,newtxmath,amssymb}
+
+% Tikz Customization
+\usetikzlibrary{intersections}
+\usepgfplotslibrary{fillbetween}
+
+% PGFPlots config
+\pgfplotsset{compat=1.14}
+
+
+
+% Logo in the first page, comment out if don't wanted
+\presentationlogo{\includegraphics[width=2cm]{logo/fsu-logo.png}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title[A short version of the title goes here]{Mathematical Foundations of Spectral Graph Theory.}
+\author[Newton]{Issac Newton}
+\institute{Florida State University}
+\date{\today}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+% title page
+\maketitle
+
+% Table of contents
+\begin{frame}{Table of Contents}
+\tableofcontents[subsectionstyle=hide, sectionstyle=show]
+\end{frame}
+% Intro section
+\section{Introduction}
+% A subsection. May contain multiple subsections
+\subsection{Graph Theory}
+\begin{frame}{What is a graph?}
+    This is an unofficial template for Florida State Mathematics poster presentation prepared by Rafiq 
+    Islam\cite{fsumathposter25}. Here is how you use plain text. Here is how you can use a block to write some important information \cite{fsubeamerpresent25}
+    \begin{block}{Graph Theory}
+        Spectral graph theory studies properties of a graph in relationship to the eigenvalues and eigenvectors of matrices associated with the graph, such as the adjacency matrix $A$, degree matrix $D$, and Laplacian $L = D - A$.
+    \end{block}
+   \begin{itemize}
+    \item This is how you can start \texttt{itemize}
+    \item Instead of this right-pointed arrow, if you want bullets, then see the instruction in line 6
+\end{itemize}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Why Graph Theory}
+\begin{frame}{Why do we need this?}
+This is an unofficial template for the Florida State Mathematics poster presentation prepared by Rafiq Islam\footnote{An example of footnote}. Here is how you use plain text. Spectral graph theory studies properties of a graph in relationship to the eigenvalues and eigenvectors of matrices associated with the graph, such as the adjacency matrix $A$, degree matrix $D$, and Laplacian $L = D - A$.
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Methodology}
+\begin{frame}{Mathematical Background}
+    This section has three slides. So in the top right, we see 3 dots. Highlighted one indicates the current slide.\\
+    Let $G = (V, E)$ be an undirected graph. The Laplacian matrix is given by
+        \[
+        L_{ij} =
+        \begin{cases}
+        \deg(v_i) & \text{if } i = j, \\
+        -1 & \text{if } i \neq j \text{ and } (i,j) \in E, \\
+        0 & \text{otherwise}.
+        \end{cases}
+        \]
+    \begin{enumerate}
+        \item The eigenvalues of $L$ reveal key structural properties such as connectivity.
+    \end{enumerate}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{A Tikz Picture Example}
+    \begin{figure}
+        \centering
+        \begin{tikzpicture}
+            \draw[thick] (0,0) ellipse (1.2 and 0.4);
+            \draw[thick] (0,-2) ellipse (1.2 and 0.4);
+            \draw[thick] (-1.2,0) -- (-1.2,-2);
+            \draw[thick] (1.2,0) -- (1.2,-2);
+            \node at (0, -2.5) {radius $r = 5$};
+            \node[right] at (1.3,-1) {height $h = 10$};
+        \end{tikzpicture}
+        \caption{ Spherical Cylinder with radius $r=5$m and height $h=10$ m}
+        \label{fig:fig1}
+    \end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%
+\begin{frame}{Other Plots}
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.5\linewidth]{images/seminole.png}
+    \caption{ Florida State Seminole (Photo credit: \href{https://en.wikipedia.org/wiki/Florida_State_Seminoles}{Wikipedia})}
+    \label{fig:enter-label}
+    \end{figure}
+\end{frame}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{Reference}
+\begin{frame}{Bibliography}
+\bibliographystyle{plainnat}\bibliography{ref}
+\end{frame}
+\end{document}
