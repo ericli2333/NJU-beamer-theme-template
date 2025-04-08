@@ -1,6 +1,8 @@
 # FSU Beamerposter & Presentation Theme (Unofficial)
 
-An unofficial custom **Beamerposter** and **presentation** theme designed for Florida State University (FSU) — ideal for math, science, and engineering departments. This theme follows the FSU Garnet & Gold color scheme and supports both **poster-style** layouts and standard **slides-style** presentations.
+An unofficial custom **Beamerposter** and **presentation** theme designed for Florida State University (FSU) — ideal for math, science, and engineering departments. This theme follows the FSU Garnet & Gold color scheme and supports both **poster-style** layouts and standard **slides-style** presentations.  
+
+**Disclaimer:** This is an adaptation of the `CambridgeUS` theme for Beamer posters and presentations.
 
 ---
 
