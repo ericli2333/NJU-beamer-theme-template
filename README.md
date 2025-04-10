@@ -47,7 +47,7 @@ The complete [PDF can be found here](images/presentation_sample.pdf)
 2. Click `New Project → Import from GitHub`  
 3. Paste the repo URL:  
    ```
-   https://github.com/mrislambd/FSU-math-poster-template
+   https://github.com/mrislambd/unofficial-FSU-beamer-theme-template
    ```
 
 ### Option 2: Download ZIP
