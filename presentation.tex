@@ -1,10 +1,12 @@
-\documentclass{beamer}
-\usepackage[L7x]{fontenc}
+\documentclass{ctexbeamer}
 % This part is required to have FSU custom style
 \usetheme[presentation]{fsu}
 \usecolortheme[presentation]{fsucolor}
 % Uncomment the next line if you want your itemize items to appear as a bullet, instead of triangular shapes
-
+\usefonttheme[onlymath]{serif}
+\renewcommand{\familydefault}{\rmdefault}
+\usepackage[style=verbose, backend=bibtex]{biblatex}
+\addbibresource{ref.bib}
 %\setbeamertemplate{itemize item}{$\bullet$}
 
 % Include the required packages here
@@ -20,7 +22,7 @@
 
 
 % Logo in the first page, comment out if don't wanted
-\presentationlogo{\includegraphics[width=2cm]{logo/fsu-logo.png}}
+\presentationlogo{\includegraphics[width=2cm]{logo/NJU-logo.jpg}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \title[A short version of the title goes here]{Mathematical Foundations of Spectral Graph Theory.}
 \author[Newton]{Issac Newton}
@@ -42,14 +44,31 @@
 \subsection{Graph Theory}
 \begin{frame}{What is a graph?}
     This is an unofficial template for Florida State Mathematics poster presentation prepared by Rafiq 
-    Islam\cite{fsumathposter25}. Here is how you use plain text. Here is how you can use a block to write some important information \cite{fsubeamerpresent25}
+    Islam\footcite{fsumathposter25}. Here is how you use plain text. Here is how you can use a block to write some important information \cite{fsubeamerpresent25}
     \begin{block}{Graph Theory}
         Spectral graph theory studies properties of a graph in relationship to the eigenvalues and eigenvectors of matrices associated with the graph, such as the adjacency matrix $A$, degree matrix $D$, and Laplacian $L = D - A$.
     \end{block}
-   \begin{itemize}
-    \item This is how you can start \texttt{itemize}
-    \item Instead of this right-pointed arrow, if you want bullets, then see the instruction in line 6
-\end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Example of itemize and enumerate}
+    \begin{columns}[t,totalwidth=\textwidth]
+        \begin{column}{0.5\textwidth}
+            \begin{block}{Itemize}
+                \begin{itemize}
+                    \item This is how you can start \texttt{itemize}
+                    \item Instead of this right-pointed arrow, if you want bullets, then see the instruction in line 6
+                \end{itemize}
+            \end{block}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{block}{Enumerate}
+                \begin{enumerate}
+                    \item This is how you can start \texttt{enumerate}
+                    \item Second item
+                \end{enumerate}
+            \end{block}
+        \end{column}
+    \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Why Graph Theory}
@@ -101,6 +120,6 @@ This is an unofficial template for the Florida State Mathematics poster presenta
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reference}
 \begin{frame}{Bibliography}
-\bibliographystyle{plainnat}\bibliography{ref}
+    \printbibliography
 \end{frame}
 \end{document}
