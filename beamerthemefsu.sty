@@ -157,13 +157,13 @@
 \fi
 
 %==================== frame title ==========================
-\setbeamertemplate{frametitle}{
-    \vskip-0.2ex
-    \begin{beamercolorbox}[wd=\paperwidth, ht=3ex, dp=1.5ex, shadow=true]{frametitle}
-        \usebeamerfont{frametitle}\hspace{1.5ex}\insertframetitle
-    \end{beamercolorbox}
-    \vskip0.5ex
-}
+% \setbeamertemplate{frametitle}{
+%     \vskip-0.2ex
+%     \begin{beamercolorbox}[wd=\paperwidth, ht=3ex, dp=1.5ex, shadow=true]{frametitle}
+%         \usebeamerfont{frametitle}\hspace{1.5ex}\insertframetitle
+%     \end{beamercolorbox}
+%     \vskip0.5ex
+% }
 
 % ======================
 % Footer Content
@@ -297,6 +297,19 @@
 \setbeamertemplate{caption label separator}{:\hspace{0.3em}}
 \setbeamertemplate{caption label format}{\insertcaptionname~\insertcaptionnumber\hspace{0.2em}}
 
+%===================== Table of Content Settings===============
+\AtBeginSection[]{
+	\begin{frame}
+    \frametitle{\begin{center}\Huge{\Roman{section} \insertsection}\end{center}}
+		  \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+	\end{frame}
+}
+\AtBeginSubsection[]{
+	\begin{frame}
+    \frametitle{\begin{center}\LARGE{\Roman{section}-\Roman{subsection} \insertsubsection}\end{center}}
+		  \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
+	\end{frame}
+}
 
 \makeatletter
 \patchcmd{\beamer@@frametitle}
