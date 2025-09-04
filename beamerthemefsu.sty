@@ -215,83 +215,77 @@
   \fi
 }
 \fi
+% ================= Box Settings ==============
+\usepackage{tcolorbox}
+\tcbuselibrary{skins, breakable, theorems}
+
+% Define common tcolorbox style keys
+\tcbset{
+  fancyblockstyle/.style={
+    enhanced,
+    rounded corners,
+    colframe=NJUPurple,
+    coltitle=white,
+    colbacktitle=NJUPurple,
+    title filled=true,
+    boxrule=1.5pt,
+    fonttitle=\bfseries,
+    breakable,
+    attach boxed title to top left={xshift=5mm, yshift=-2mm},
+    boxed title style={rounded corners, size=small}
+  }
+}
+
+\newtcolorbox{alignblock}[1]{
+    \fancyblockstyle,
+    title={#1},
+    before upper={\raggedright} % 强制内容左对齐
+}
+
+\newtcolorbox{fancyblock}[1]{
+    \fancyblockstyle,
+    title={#1}
+}
 
 % ======================
-% Block Styling
+% Block Styling (using tcolorbox for both presentation and poster modes)
 % ======================
-\iffsutheme@presentation
-
 \setbeamertemplate{block begin}{
-  \begin{beamercolorbox}[wd=0.85\textwidth,left, rounded=true, shadow=true, ht=1ex, dp=1ex]{block title}
-  \vspace{-2ex}
-    \usebeamerfont{block title}\insertblocktitle
-    \vskip-1.25ex
-    \begin{beamercolorbox}{block separator}
-    \end{beamercolorbox}
-  \end{beamercolorbox}
-  \begin{beamercolorbox}[wd=0.85\textwidth, rounded=true, shadow=true]{block body}
+  \begin{tcolorbox}[fancyblockstyle, title=\insertblocktitle]
   \justifying
 }
 \setbeamertemplate{block end}{
-  \end{beamercolorbox}
-  \vspace*{1ex}
-}
-   
-\else
-\setbeamertemplate{block begin}{
-  \begin{beamercolorbox}[colsep*=0ex,dp=0.5ex,center]{block title}
-  \vskip 0pt
-    \usebeamerfont{block title}\insertblocktitle
-    \vskip-1.25ex
-    \begin{beamercolorbox}[colsep=0.025ex]{block separator}
-    \end{beamercolorbox}
-  \end{beamercolorbox}
-  \vspace{0.9ex}
-  \begin{beamercolorbox}[colsep*=0ex]{block body}
-  \justifying
-}
-\setbeamertemplate{block end}{
-  \end{beamercolorbox}
+  \end{tcolorbox}
   \vspace*{1ex}
 }
 
 % Alert block
 \setbeamertemplate{block alerted begin}{
-  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block alerted title}
-  \vskip 0pt
-    \usebeamerfont{block title}\insertblocktitle
-    \vskip-1.25ex
-    \begin{beamercolorbox}[colsep=0.025ex]{block alerted separator}
-    \end{beamercolorbox}
-  \end{beamercolorbox}
-  \vspace{0.5ex}
-  \begin{beamercolorbox}[colsep*=0ex]{block alerted body}
+  \begin{tcolorbox}[fancyblockstyle, 
+    colframe=red!75!black,
+    colbacktitle=red!75!black,
+    title=\insertblocktitle
+  ]
   \justifying
 }
 \setbeamertemplate{block alerted end}{
-  \end{beamercolorbox}
+  \end{tcolorbox}
   \vspace*{1ex}
 }
 
 % Example block
 \setbeamertemplate{block example begin}{
-  \begin{beamercolorbox}[colsep*=0ex,dp=2ex,center]{block example title}
-  \vskip0pt
-    \usebeamerfont{block title}\insertblocktitle
-    \vskip-1.25ex
-    \begin{beamercolorbox}[colsep=0.05ex]{block example separator}
-    \end{beamercolorbox}
-  \end{beamercolorbox}
-  \vskip-1ex
-  \begin{beamercolorbox}[colsep*=0ex]{block example body}
+  \begin{tcolorbox}[fancyblockstyle,
+    colframe=green!50!black,
+    colbacktitle=green!50!black,
+    title=\insertblocktitle
+  ]
   \justifying
 }
 \setbeamertemplate{block example end}{
-  \end{beamercolorbox}
+  \end{tcolorbox}
   \vspace*{1ex}
 }
-
-\fi
 %===================== Table and Images===============
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{:\hspace{0.3em}}
@@ -317,5 +311,3 @@
     {\hypertarget{slide\theframenumber}{}\gdef\insertframetitle}
     {}{}
 \makeatother
-
-
