@@ -19,14 +19,17 @@
 % PGFPlots config
 \pgfplotsset{compat=1.14}
 
+% cite command
+\let\oldcite\cite
+\renewcommand{\cite}[1]{\footcite{#1}}
 
 
 % Logo in the first page, comment out if don't wanted
 \presentationlogo{\includegraphics[width=2cm]{logo/NJU-logo.jpg}}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\title[A short version of the title goes here]{Mathematical Foundations of Spectral Graph Theory.}
-\author[Newton]{Issac Newton}
-\institute{Nanjing University}
+\title[AI Foundations]{Mathematical Foundations of Artificial Intelligence}
+\author[Li]{Eric Li}
+\institute{School of Artificial Intelligence, Nanjing University}
 \date{\today}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \begin{document}
@@ -37,85 +40,111 @@
 % Intro section
 \section{Introduction}
 % A subsection. May contain multiple subsections
-\subsection{Graph Theory}
-\begin{frame}{What is a graph?}
-    This is an unofficial template for Florida State Mathematics poster presentation prepared by Rafiq 
-    Islam\footcite{fsumathposter25}. Here is how you use plain text. Here is how you can use a block to write some important information \cite{fsubeamerpresent25}
-    \begin{block}{Graph Theory}
-        Spectral graph theory studies properties of a graph in relationship to the eigenvalues and eigenvectors of matrices associated with the graph, such as the adjacency matrix $A$, degree matrix $D$, and Laplacian $L = D - A$.
+\subsection{Artificial Intelligence}
+\begin{frame}{What is Artificial Intelligence?}
+    This template is modified from the original FSU template by Rafiq Islam\cite{fsumathposter25} to create an NJU AI School presentation template\cite{njubeamerpresent25}. Here is how you use plain text. Here is how you can use a block to write some important information.
+    \begin{block}{Artificial Intelligence}
+        Artificial Intelligence is the study and design of intelligent agents that can perceive their environment and take actions to maximize their chances of success. Modern AI encompasses machine learning, deep learning, natural language processing, computer vision, and robotics.
     \end{block}
 \end{frame}
 \begin{frame}
     \frametitle{Example of itemize and enumerate}
     \begin{columns}[c, onlytextwidth]
         \begin{column}{0.48\textwidth}
-            \begin{block}{Itemize}
+            \small
+            \begin{block}{AI Research Areas}
                 \begin{itemize}
-                    \item This is how you can start \texttt{itemize}
-                    \item Instead of this right-pointed arrow, if you want bullets, then see the instruction in line 6
+                    \item Machine Learning and Deep Learning
+                    \item Natural Language Processing (NLP)
+                    \item Computer Vision and Pattern Recognition
+                    \item Robotics and Autonomous Systems
+                    \item 人工智能算法与理论 (Chinese example)
                 \end{itemize}
             \end{block}
         \end{column}
         \begin{column}{0.48\textwidth}
-            \begin{block}{Enumerate}
+            \begin{block}{Key Technologies}
                 \begin{enumerate}
-                    \item This is how you can start \texttt{enumerate}
-                    \item Second item
+                    \item Neural Networks and Deep Learning
+                    \item Reinforcement Learning
+                    \item Knowledge Representation and Reasoning
+                    \item Computer Vision Systems
                 \end{enumerate}
             \end{block}
         \end{column}
     \end{columns}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Why Graph Theory}
-\begin{frame}{Why do we need this?}
-This is an unofficial template for the Florida State Mathematics poster presentation prepared by Rafiq Islam\footnote{An example of footnote}. Here is how you use plain text. Spectral graph theory studies properties of a graph in relationship to the eigenvalues and eigenvectors of matrices associated with the graph, such as the adjacency matrix $A$, degree matrix $D$, and Laplacian $L = D - A$.
+\subsection{Why Artificial Intelligence}
+\begin{frame}{Why Artificial Intelligence?}
+This template is modified from the original FSU template\footnote{Based on FSU Mathematics template by Rafiq Islam}. Artificial Intelligence is transforming industries and society by enabling machines to perform tasks that typically require human intelligence, such as visual perception, speech recognition, decision-making, and language translation.
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Methodology}
-\begin{frame}{Mathematical Background}
-    This section has three slides. So in the top right, we see 3 dots. Highlighted one indicates the current slide.\\
-    Let $G = (V, E)$ be an undirected graph. The Laplacian matrix is given by
+\begin{frame}{Mathematical Foundations}
+    This section covers the mathematical background of AI.\\
+    The fundamental equation for neural networks is the forward propagation:
         \[
-        L_{ij} =
-        \begin{cases}
-        \deg(v_i) & \text{if } i = j, \\
-        -1 & \text{if } i \neq j \text{ and } (i,j) \in E, \\
-        0 & \text{otherwise}.
-        \end{cases}
+        a^{(l)} = \sigma(W^{(l)}a^{(l-1)} + b^{(l)})
         \]
+    where $\sigma$ is the activation function, $W^{(l)}$ are the weights, and $b^{(l)}$ are the biases at layer $l$.
     \begin{enumerate}
-        \item The eigenvalues of $L$ reveal key structural properties such as connectivity.
+        \item Backpropagation uses gradient descent to optimize network parameters.
+        \item Convolutional Neural Networks (CNNs) excel in image processing tasks.
+        \item Recurrent Neural Networks (RNNs) handle sequential data effectively.
     \end{enumerate}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{A Tikz Picture Example}
+\begin{frame}{Neural Network Architecture}
     \begin{figure}
         \centering
-        \begin{tikzpicture}
-            \draw[thick] (0,0) ellipse (1.2 and 0.4);
-            \draw[thick] (0,-2) ellipse (1.2 and 0.4);
-            \draw[thick] (-1.2,0) -- (-1.2,-2);
-            \draw[thick] (1.2,0) -- (1.2,-2);
-            \node at (0, -2.5) {radius $r = 5$};
-            \node[right] at (1.3,-1) {height $h = 10$};
+        \begin{tikzpicture}[scale=0.8]
+            % Input layer
+            \foreach \i in {1,...,3}
+                \node[circle,draw,minimum size=0.8cm] (input\i) at (0,-\i) {$x_\i$};
+            
+            % Hidden layer
+            \foreach \i in {1,...,4}
+                \node[circle,draw,minimum size=0.8cm] (hidden\i) at (3,-\i+0.5) {$h_\i$};
+            
+            % Output layer
+            \node[circle,draw,minimum size=0.8cm] (output) at (6,-2) {$y$};
+            
+            % Connections
+            \foreach \i in {1,...,3}
+                \foreach \j in {1,...,4}
+                    \draw[->] (input\i) -- (hidden\j);
+            
+            \foreach \i in {1,...,4}
+                \draw[->] (hidden\i) -- (output);
+            
+            % Labels
+            \node[above] at (0,0) {Input Layer};
+            \node[above] at (3,0) {Hidden Layer};
+            \node[above] at (6,0) {Output Layer};
         \end{tikzpicture}
-        \caption{ Spherical Cylinder with radius $r=5$m and height $h=10$ m}
-        \label{fig:fig1}
+        \caption{Basic Neural Network Architecture with 3 input neurons, 4 hidden neurons, and 1 output neuron}
+        \label{fig:nn_arch}
     \end{figure}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%
-\begin{frame}{Other Plots}
+\begin{frame}{AI Applications}
     \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{images/seminole.png}
-    \caption{ Florida State Seminole (Photo credit: \href{https://en.wikipedia.org/wiki/Florida_State_Seminoles}{Wikipedia})}
-    \label{fig:enter-label}
+    \includegraphics[width=0.5\linewidth]{images/lamda.png}
+    \caption{Nanjing University LAMDA Research Team (Photo credit: \href{https://lamda.nju.edu.cn/}{LAMDA})}
+    \label{fig:ai_apps}
     \end{figure}
+    \begin{itemize}
+        \item Healthcare: Medical image analysis and diagnosis
+        \item Transportation: Autonomous vehicles and traffic optimization
+        \item Education: Personalized learning systems
+        \item Finance: Fraud detection and algorithmic trading
+    \end{itemize}
 \end{frame}
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reference}
-\begin{frame}{Bibliography}
+\begin{frame}[allowframebreaks]{Bibliography}
     \printbibliography
 \end{frame}
 \end{document}

@@ -25,13 +25,13 @@
 \newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
 
 % Title and authors
-\title{Mathematical Foundations of Spectral Graph Theory}
-\author{Issac Newton \inst{1} \and Alan Turing \inst{1} \and Leonard Euler \inst{2}}
-\institute[shortinst]{\inst{1} University of Cambridge \qquad \inst{2} University of Basel}
+\title{Mathematical Foundations of Artificial Intelligence}
+\author{Eric Li \inst{1} \and AI Research Team \inst{1}}
+\institute[shortinst]{\inst{1} School of Artificial Intelligence, Nanjing University}
 
 % Footer content
 \footercontent{
-\href{https://github.com/mrislambd/FSU-math-poster-template}{github.com/mrislambd/FSU-math-poster-template} \hfill Unofficial Poster Design\hfill Florida State University Mathematics
+\href{https://github.com/ericli2333/NJU-beamer-theme-template}{github.com/ericli2333/NJU-beamer-theme-template} \hfill Modified from FSU Template\hfill Nanjing University AI School
 }
 
 % Logos (replace with your real paths)
@@ -46,53 +46,72 @@
 % COLUMN 1
 \begin{column}{\colwidth}
 \begin{block}{Introduction}
-This is an unofficial template for Florida State Mathematics poster presentation prepared by Rafiq Islam\cite{fsumathposter25}. Here is how you use plain text\hfill\\
-Spectral graph theory studies properties of a graph in relationship to the eigenvalues and eigenvectors of matrices associated with the graph, such as the adjacency matrix $A$, degree matrix $D$, and Laplacian $L = D - A$.
+This poster template is modified from the original FSU Mathematics template by Rafiq Islam\cite{fsumathposter25} for Nanjing University AI School presentations\cite{njumathposter25}.\\
+Artificial Intelligence encompasses the development of systems that can perform tasks requiring human intelligence, including learning, reasoning, perception, and decision-making.
 \end{block}
 
-\begin{block}{Mathematical Background}
-    Let $G = (V, E)$ be an undirected graph. The Laplacian matrix is given by
+\begin{block}{Mathematical Foundations}
+    The core of modern AI lies in mathematical optimization and linear algebra. The fundamental neural network forward propagation is:
         \[
-        L_{ij} =
-        \begin{cases}
-        \deg(v_i) & \text{if } i = j, \\
-        -1 & \text{if } i \neq j \text{ and } (i,j) \in E, \\
-        0 & \text{otherwise}.
-        \end{cases}
+        a^{(l)} = \sigma(W^{(l)}a^{(l-1)} + b^{(l)})
         \]
+    where $\sigma$ is the activation function, $W^{(l)}$ are weight matrices, and $b^{(l)}$ are bias vectors.
 
-        The eigenvalues of $L$ reveal key structural properties such as connectivity.
+    Backpropagation uses gradient descent to minimize the loss function:
+        \[
+        \theta \leftarrow \theta - \eta \nabla_\theta J(\theta)
+        \]
 \end{block}
 
-\begin{block}{Tikz Picture}
+\begin{block}{Neural Network Architecture}
     \begin{figure}
         \centering
-        \begin{tikzpicture}[scale=4]
-            \draw[thick] (0,0) ellipse (1.2 and 0.4);
-            \draw[thick] (0,-2) ellipse (1.2 and 0.4);
-            \draw[thick] (-1.2,0) -- (-1.2,-2);
-            \draw[thick] (1.2,0) -- (1.2,-2);
-            \node at (0, -2.5) {radius $r = 5$};
-            \node[right] at (1.3,-1) {height $h = 10$};
+        \begin{tikzpicture}[scale=3]
+            % Input layer
+            \foreach \i in {1,...,3}
+                \node[circle,draw,minimum size=0.5cm] (input\i) at (0,-\i) {$x_\i$};
+            
+            % Hidden layer
+            \foreach \i in {1,...,4}
+                \node[circle,draw,minimum size=0.5cm] (hidden\i) at (2,-\i+0.5) {$h_\i$};
+            
+            % Output layer
+            \node[circle,draw,minimum size=0.5cm] (output) at (4,-2) {$y$};
+            
+            % Connections
+            \foreach \i in {1,...,3}
+                \foreach \j in {1,...,4}
+                    \draw[->] (input\i) -- (hidden\j);
+            
+            \foreach \i in {1,...,4}
+                \draw[->] (hidden\i) -- (output);
+            
+            % Labels
+            \node[above] at (0,0) {Input};
+            \node[above] at (2,0) {Hidden};
+            \node[above] at (4,0) {Output};
         \end{tikzpicture}
-        \caption{Spherical Cylinder with radius $r=5$m and height $h=10$ m}
-        \label{fig:fig1}
+        \caption{Basic Neural Network Architecture}
+        \label{fig:nn_arch}
     \end{figure}
 \end{block}
 
-\begin{block}{Objectives}
+\begin{block}{Research Objectives}
 \begin{itemize}
-  \item Explore classical ML models for text classification
-  \item Apply preprocessing techniques like TF-IDF
-  \item Evaluate models using accuracy, precision, recall
+  \item Develop advanced deep learning architectures
+  \item Improve natural language understanding capabilities
+  \item Enhance computer vision systems for real-world applications
+  \item 推动人工智能理论创新 (Advancing AI theoretical innovation)
 \end{itemize}
 \end{block}
 
-\begin{alertblock}{Why Text Classification?}
-This is an alert block where you can mention an important fact or result.
+\begin{alertblock}{Why Artificial Intelligence?}
+Artificial Intelligence is revolutionizing multiple industries and creating new possibilities:
 \begin{itemize}
-  \item Used in spam detection, sentiment analysis, topic labeling
-  \item Helps automate information filtering at scale
+  \item Healthcare: Early disease detection and personalized treatment
+  \item Transportation: Autonomous vehicles and smart traffic systems
+  \item Education: Adaptive learning platforms and intelligent tutoring
+  \item Finance: Risk assessment and algorithmic trading
 \end{itemize}
 \end{alertblock}
 \end{column}
@@ -102,40 +121,46 @@ This is an alert block where you can mention an important fact or result.
 % COLUMN 2
 \begin{column}{\colwidth}
 \begin{block}{Methodology}
-Numbered items where the number elements will display in garnet color.\hfill
+Our research methodology follows a systematic approach:\hfill
 \begin{enumerate}
-  \item Dataset cleaning: lowercasing, punctuation removal
-  \item Tokenization and stop-word removal
-  \item Feature extraction via TF-IDF
-  \item Training Logistic Regression, Naive Bayes, and SVM
+  \item Problem formulation and mathematical modeling
+  \item Data collection and preprocessing
+  \item Algorithm design and implementation
+  \item Experimental evaluation and performance analysis
+  \item Theoretical analysis and generalization studies
 \end{enumerate}
 \end{block}
 
-\begin{block}{Visualization}
+\begin{block}{AI Research Areas}
 \begin{figure}
     \centering
-    \includegraphics[width=0.5\linewidth]{images/seminole.png}
-    \caption{Florida State Seminole (Photo credit: \href{https://en.wikipedia.org/wiki/Florida_State_Seminoles}{Wikipedia})}
-    \label{fig:enter-label}
+    \includegraphics[width=0.5\linewidth]{images/lamda.png}
+    \caption{NJU LAMDA Research Team (Photo credit: \href{https://lamda.nju.edu.cn/}{LAMDA})}
+    \label{fig:ai_domains}
 \end{figure}
+\begin{itemize}
+  \item Machine Learning and Deep Learning
+  \item Natural Language Processing
+  \item Computer Vision and Robotics
+  \item Knowledge Representation and Reasoning
+\end{itemize}
 \end{block}
 
-\begin{block}{Table}
+\begin{block}{Performance Comparison}
     \begin{center}
         \renewcommand{\arraystretch}{1.4}
         \begin{tabular}{|c|c|c|c|}
         \hline
-        \textbf{Graph} & \textbf{Nodes ($n$)} & \textbf{Edges ($m$)} & \textbf{2nd Eigenvalue $\lambda_2$} \\
+        \textbf{Model} & \textbf{Accuracy} & \textbf{Precision} & \textbf{Recall} \\
         \hline
-        Cycle $C_6$ & 6 & 6 & 1.0 \\
-        Complete $K_4$ & 4 & 6 & 4.0 \\
-        Star $S_5$ & 5 & 4 & 1.0 \\
-        Path $P_5$ & 5 & 4 & 0.3819 \\
-        Random $G_{10,0.5}$ & 10 & 23 & 1.823 \\
+        CNN & 94.2\% & 93.8\% & 94.5\% \\
+        RNN & 91.5\% & 90.2\% & 92.1\% \\
+        Transformer & 96.8\% & 96.5\% & 97.1\% \\
+        Traditional ML & 87.3\% & 86.1\% & 88.2\% \\
         \hline
         \end{tabular}
         \vspace{0.5em}
-        \captionof{table}{Comparison of different graphs and their spectral properties.}
+        \captionof{table}{Performance comparison of different AI models on benchmark datasets}
     \end{center}
 \end{block}
 
@@ -146,52 +171,49 @@ Numbered items where the number elements will display in garnet color.\hfill
 
 % COLUMN 3
 \begin{column}{\colwidth}
-\begin{exampleblock}{More General block}
-    The more accurate approximation could be found by increasing the number of sub-intervals. That is
+\begin{exampleblock}{Theoretical Foundations}
+    The mathematical foundation of deep learning involves optimization theory and linear algebra. The learning process minimizes the loss function:
     \begin{equation}
-        \int_0^{20} f(x)dx = \lim_{n \to \infty} \sum_{i=1}^n f(x_i^*)\Delta x\approx 144.15
-    \end{equation}    
-    irrespective of the left-hand point or the right-hand point we take to draw the rectangles.
-        \begin{center}
-        \begin{tikzpicture}
-            \begin{axis}[
-                width=14cm,
-                height=7cm,
-                xmin=-1.5, xmax=22,
-                ymin=-20, ymax=30,
-                axis lines=middle,
-                xlabel={$x$},
-                ylabel={$f(x)$},
-                samples=300,
-                domain=0:22,
-                grid=both,
-            ]
-            
-            % Area under the curve
-            \addplot [domain=-1.5:22, samples=300, name path=f, thick, color=blue]
-            {1+0.25*x+sin(deg(x)) + 20*sin(deg(x)/2)};
-
-            \path [name path=xaxis]
-            (\pgfkeysvalueof{/pgfplots/xmin},0) --
-            (\pgfkeysvalueof{/pgfplots/xmax},0);
-
-            \addplot[blue!50, opacity=0.4] fill between [of=f and xaxis, soft clip={domain=-0:20}];
-            
-            \end{axis}
-        \end{tikzpicture}
-        \end{center}
-        This expression
-        \begin{equation*}
-            \int_0^{20} f(x)dx   
-        \end{equation*}
-        is called the definite integral that finds the area under and/or above the curve $f(x)$ and the $x$ axis.
+        \min_\theta \frac{1}{N} \sum_{i=1}^N \mathcal{L}(f_\theta(x_i), y_i) + \lambda R(\theta)
+    \end{equation}
+    where $\mathcal{L}$ is the loss function, $R(\theta)$ is the regularization term, and $\lambda$ controls regularization strength.
+    
+    \begin{center}
+    \begin{tikzpicture}
+        \begin{axis}[
+            width=14cm,
+            height=7cm,
+            xmin=0, xmax=100,
+            ymin=0, ymax=2.5,
+            axis lines=middle,
+            xlabel={Training Epochs},
+            ylabel={Loss Value},
+            samples=100,
+            grid=both,
+        ]
+        
+        % Training loss curve
+        \addplot[domain=0:100, samples=100, thick, color=blue]
+        {2.0 * exp(-0.05*x) + 0.1};
+        
+        % Validation loss curve
+        \addplot[domain=0:100, samples=100, thick, color=red, dashed]
+        {1.8 * exp(-0.04*x) + 0.15};
+        
+        \legend{Training Loss, Validation Loss}
+        
+        \end{axis}
+    \end{tikzpicture}
+    \end{center}
+    This visualization shows typical learning curves where both training and validation losses decrease over epochs, indicating successful model convergence.
 \end{exampleblock}
 
-\begin{exampleblock}{Conclusion}
+\begin{exampleblock}{Conclusion and Future Work}
 \begin{itemize}
-  \item SVM performed best with highest accuracy
-  \item TF-IDF improved performance over raw counts
-  \item Logistic Regression was more interpretable
+  \item Deep learning models demonstrate superior performance across various tasks
+  \item Transformer architectures excel in natural language processing
+  \item Continued research needed for explainable and trustworthy AI
+  \item Future directions include multimodal learning and AI safety
 \end{itemize}
 \end{exampleblock}
 
