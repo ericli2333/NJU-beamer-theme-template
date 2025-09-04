@@ -1,17 +1,17 @@
-% Custom Unofficial Beamerposter Theme: fsutheme
+% Custom Unofficial Beamerposter Theme: njutheme
 
-\ProvidesPackage{beamerthemefsu}[2025/04/04 FSU Custom Theme Unofficial]
+\ProvidesPackage{beamerthemenju}[2025/09/04 NJU Custom Theme Unofficial]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 
 \SetupKeyvalOptions{
-    family=fsutheme,
-    prefix=fsutheme@
+    family=njutheme,
+    prefix=njutheme@
 }
 
 \DeclareBoolOption[false]{presentation}
 \ProcessKeyvalOptions*
-\iffsutheme@presentation
+\ifnjutheme@presentation
     \RequirePackage{ragged2e}
     \setbeamerfont{headline institute}{size=\Large}
     \setbeamertemplate{section in toc}[sections numbered]
@@ -54,7 +54,7 @@
 % ======================
 % Header / Title Bar
 % ======================
-\iffsutheme@presentation
+\ifnjutheme@presentation
 
 \setbeamertemplate{title page}{
   \begin{center}
@@ -168,7 +168,7 @@
 % ======================
 % Footer Content
 % ======================
-\iffsutheme@presentation
+\ifnjutheme@presentation
 \setbeamerfont{author in head/foot}{size=\scriptsize}
 \setbeamerfont{title in head/foot}{size=\scriptsize}
 \setbeamerfont{date in head/foot}{size=\scriptsize}
@@ -225,7 +225,7 @@
     enhanced,
     rounded corners,
     colframe=NJUPurple,
-    coltitle=white,
+    coltitle=NJUGold,
     colbacktitle=NJUPurple,
     title filled=true,
     boxrule=1.5pt,

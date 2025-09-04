@@ -1,0 +1,80 @@
+% beamercolorthemenjucolor.sty
+% Custom color theme for NJU Beamerposter
+
+\ProvidesPackage{beamercolorthemenjucolor}[2025/04/04 NJU Color Theme Unofficial] 
+
+\RequirePackage{kvoptions}
+
+\SetupKeyvalOptions{
+    family=njucolortheme,
+    prefix=njucolor@
+}
+
+\DeclareBoolOption[false]{presentation}
+\ProcessKeyvalOptions*
+
+% ========== Color Definitions ==========
+\definecolor{NJUGarnet}{RGB}{120, 47, 64}
+\definecolor{NJUGold}{RGB}{206, 184, 136}
+\definecolor{NJUWhite}{RGB}{255,255,255}
+\definecolor{NJUBlack}{RGB}{0,0,0}
+\definecolor{NJULightGray}{HTML}{f4f4f4}
+\definecolor{NJUPurple}{RGB}{108,15,111}
+
+% ========== Background & Base Text ==========
+\setbeamercolor{background canvas}{bg=NJUWhite}
+\setbeamercolor{normal text}{fg=NJUBlack}
+\setbeamercolor{alerted text}{fg=NJUPurple}
+
+%====================Frames for presentation =================
+\setbeamercolor{frametitle}{fg=NJUGold, bg=NJUPurple}
+
+% ========== Title & Header ==========
+\ifnjucolor@presentation
+\setbeamercolor{title box}{fg=NJUWhite, bg=NJUPurple}
+\setbeamercolor{headline left}{fg=NJUGold, bg=NJUPurple!80}
+\setbeamercolor{headline right}{fg=NJUGold, bg=NJUBlack!80}
+\else
+\setbeamercolor{headline}{bg=NJUPurple, fg=NJUWhite}
+\setbeamercolor{headline rule}{bg=NJUPurple}
+\setbeamercolor{title}{fg=NJUWhite, bg=NJUPurple}
+\setbeamercolor{headline title}{fg=NJUWhite}
+\setbeamercolor{headline author}{fg=NJUWhite}
+\setbeamercolor{headline institute}{fg=NJUWhite}
+\fi 
+
+% ========== Footer ==========
+\ifnjucolor@presentation
+\setbeamercolor{footline left}{fg=NJUGold, bg=NJUPurple!80}
+\setbeamercolor{footline center}{fg=NJUPurple, bg=NJUGold!70}
+\setbeamercolor{footline right}{fg=NJUGold, bg=NJUBlack!80}
+\else 
+\setbeamercolor{footline}{fg=NJUWhite, bg=NJUPurple}
+\fi
+
+% ========== Blocks ==========
+\ifnjucolor@presentation
+\setbeamercolor{block title}{fg=NJUGold, bg=NJUPurple}
+\setbeamercolor{block body}{fg=NJUBlack, bg=NJUPurple!20}
+\else 
+\setbeamercolor{block title}{fg=NJUPurple, bg=NJUGold}
+\setbeamercolor{block body}{fg=NJUBlack, bg=NJULightGray}
+\setbeamercolor{block alerted title}{fg=NJUWhite, bg=NJUPurple}
+\setbeamercolor{block alerted body}{fg=NJUBlack, bg=NJULightGray}
+\setbeamercolor{block example title}{fg=NJUBlack, bg=NJUWhite}
+\setbeamercolor{block example body}{fg=NJUBlack, bg=NJUWhite}
+\fi 
+
+% ========== Lists ==========
+\setbeamercolor{item projected}{fg=NJUWhite, bg=NJUPurple}
+\setbeamercolor{itemize item}{fg=NJUPurple}
+\setbeamercolor{enumerate item}{fg=NJUPurple}
+
+% ========== Navigation (Hidden) ==========
+\setbeamercolor{navigation symbols}{fg=NJUPurple}
+\beamertemplatenavigationsymbolsempty
+
+% ========== Captions and Table of Contents ==========
+\setbeamercolor{caption name}{fg=NJUPurple}
+\setbeamercolor{section in toc}{fg=NJUPurple, bg=NJULightGray}
+\setbeamercolor{subsection in toc}{fg=NJUBlack, bg=NJULightGray}
