@@ -157,13 +157,30 @@
 \fi
 
 %==================== frame title ==========================
-% \setbeamertemplate{frametitle}{
-%     \vskip-0.2ex
-%     \begin{beamercolorbox}[wd=\paperwidth, ht=3ex, dp=1.5ex, shadow=true]{frametitle}
-%         \usebeamerfont{frametitle}\hspace{1.5ex}\insertframetitle
-%     \end{beamercolorbox}
-%     \vskip0.5ex
-% }
+\setbeamertemplate{frametitle}{
+    \vskip-0.2ex
+    \ifnjutheme@presentation
+        \begin{beamercolorbox}[wd=\paperwidth, ht=3ex, dp=1.5ex, shadow=true]{frametitle}
+            \ifx\insertframetitle\empty
+            \else
+                \hbox to \paperwidth{%
+                    \makebox[0.85\paperwidth][l]{%
+                        \hspace{1.5ex}\usebeamerfont{frametitle}\insertframetitle%
+                    }%
+                    \makebox[0.15\paperwidth][r]{%
+                        \raisebox{-0.5ex}{\includegraphics[height=2.5ex]{logo/NJU-gold.png}}%
+                        \hspace{1ex}%
+                    }%
+                }
+            \fi
+        \end{beamercolorbox}
+    \else
+        \begin{beamercolorbox}[wd=\paperwidth, ht=3ex, dp=1.5ex, shadow=true]{frametitle}
+            \usebeamerfont{frametitle}\hspace{1.5ex}\insertframetitle
+        \end{beamercolorbox}
+    \fi
+    \vskip0.5ex
+}
 
 % ======================
 % Footer Content
@@ -291,16 +308,57 @@
 \setbeamertemplate{caption label separator}{:\hspace{0.3em}}
 \setbeamertemplate{caption label format}{\insertcaptionname~\insertcaptionnumber\hspace{0.2em}}
 
+%===================== Section/Subsection Colorbox Styles ===============
+% 定义section页面的colorbox样式
+\newcommand{\sectioncolorbox}[1]{%
+  \begin{tcolorbox}[
+    enhanced,
+    sharp corners,
+    colback=NJUPurple!20,
+    colframe=NJUPurple,
+    boxrule=2pt,
+    arc=0mm,
+    width=\textwidth,
+    height=10ex,
+    valign=center,
+    halign=center,
+    fontupper=\Huge\bfseries\color{NJUPurple}
+  ]
+  #1
+  \end{tcolorbox}%
+}
+
+% 定义subsection页面的colorbox样式
+\newcommand{\subsectioncolorbox}[1]{%
+  \begin{tcolorbox}[
+    enhanced,
+    sharp corners,
+    colback=NJUGold!20,
+    colframe=NJUGold,
+    boxrule=2pt,
+    arc=0mm,
+    width=\textwidth,
+    height=8ex,
+    valign=center,
+    halign=center,
+    fontupper=\LARGE\bfseries\color{NJUGold}
+  ]
+  #1
+  \end{tcolorbox}%
+}
+
 %===================== Table of Content Settings===============
 \AtBeginSection[]{
 	\begin{frame}
-    \frametitle{\begin{center}\Huge{\Roman{section} \insertsection}\end{center}}
+    \sectioncolorbox{\Roman{section} \insertsection}
+    \vspace{1ex}
 		  \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
 	\end{frame}
 }
 \AtBeginSubsection[]{
 	\begin{frame}
-    \frametitle{\begin{center}\LARGE{\Roman{section}-\Roman{subsection} \insertsubsection}\end{center}}
+    \subsectioncolorbox{\Roman{section}-\Roman{subsection} \insertsubsection}
+    \vspace{1ex}
 		  \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
 	\end{frame}
 }
