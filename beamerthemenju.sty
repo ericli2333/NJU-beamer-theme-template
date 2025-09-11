@@ -86,14 +86,14 @@
 \setbeamertemplate{headline}{
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=1.5ex, dp=1.5ex, center]{headline left}%
+    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=2.5ex, dp=1.5ex, center]{headline left}%
       \centering
       \vspace{-1ex}
       \usebeamerfont{section in head/foot} \insertsectionhead
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=1.5ex, dp=1.5ex, center]{headline right}%
+    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=2.5ex, dp=1.5ex, center]{headline right}%
       \centering
-      \vspace{-1.25ex}
+      \vspace{-0.85ex}
       \usebeamerfont{section in head/foot}
       \ifx\insertframetitle\empty
         % Do nothing
@@ -106,7 +106,7 @@
           \else
             \foreach \n in {\insertsectionstartpage,...,\insertsectionendpage}{
               \ifnum\n=\insertframenumber
-                \hyperlink{slide\n}{\raisebox{0.15ex}{\large$\bullet$}}
+                \hyperlink{slide\n}{\raisebox{0.15ex}{\small$\bullet$}}
               \else
                 \hyperlink{slide\n}{\color{gray!60}\raisebox{0.15ex}{\small$\bullet$}}
               \fi
@@ -198,18 +198,18 @@
   % ===== Bottom: Custom footer =====
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[wd=0.2\paperwidth,ht=2ex,dp=1.5ex,center]{footline left}%
+    \begin{beamercolorbox}[wd=0.2\paperwidth,ht=2.3ex,dp=1.5ex,center]{footline left}%
         \centering
         \vspace{-0.8 ex}
       \usebeamerfont{section in head/foot} \hspace{1ex}\insertshortauthor
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2ex,dp=1.5ex,center]{footline center}%
+    \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.3ex,dp=1.5ex,center]{footline center}%
       \centering
       \vspace{-0.8ex}
       \usebeamerfont{section in head/foot} 
       \insertshorttitle
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2ex,dp=1.5ex,right]{footline right}%
+    \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.3ex,dp=1.5ex,right]{footline right}%
       \centering
       \vspace{-1.2 ex}
       \usebeamerfont{section in head/foot} 
