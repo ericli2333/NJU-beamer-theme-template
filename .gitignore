@@ -1,0 +1,7 @@
+*.aux
+*.bbl
+*.synctex.gz
+*.pdf
+*.nav
+*.snm
+*-blx.bib
