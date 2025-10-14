@@ -10,6 +10,7 @@
 }
 
 \DeclareBoolOption[false]{presentation}
+\DeclareBoolOption[false]{articlereport}
 \ProcessKeyvalOptions*
 \ifnjutheme@presentation
     \RequirePackage{ragged2e}
@@ -39,12 +40,16 @@
 \setbeamerfont{heading}{series=\bfseries}
 \setbeamerfont{footline}{size=\normalsize}
 \setbeamerfont{frametitle}{size=\Large}
-\fi 
+\setbeamerfont{author}{size=\small}
+\setbeamerfont{institute}{size=\small}
+\setbeamerfont{date}{size=\small}
+\fi
 
 % ======================
 % Logo Management
 % ======================
 \newcommand{\presentationlogo}[1]{\newcommand{\insertpresentationlogo}{#1}}
+\newcommand{\articleinfo}[1]{\newcommand{\insertarticleinfo}{#1}}
 \newlength{\logowidth}
 \setlength{\logowidth}{10cm}
 
@@ -56,31 +61,59 @@
 % ======================
 \ifnjutheme@presentation
 
-\setbeamertemplate{title page}{
-  \begin{center}
-    % Title box centered with shadow
-    \begin{beamercolorbox}[wd=0.85\paperwidth, rounded=true, shadow=true, center]{title box}
-    \usebeamerfont{title}
-    \centering
-    \parbox{0.85\paperwidth}{\centering\inserttitle}
-    \end{beamercolorbox}
+\ifnjutheme@articlereport
+  % Article report mode: show article info instead of title
+  \setbeamertemplate{title page}{
+    \begin{center}
+      \ifdefined\insertarticleinfo
+        \usebeamerfont{title}
+        \centering
+        \begin{center}
+          \insertarticleinfo 
+        \end{center}
+      \fi
+      
+      \vspace{0.15cm}
+      {Reporter: \usebeamerfont{author}\insertauthor\par}
+      
+      \vspace{0.3cm}
+      {\usebeamerfont{institute}\insertinstitute\par}
+      
+      \vspace{0.3cm}
+      {\usebeamerfont{date}\insertdate\par}
 
-    
-    \vspace{1cm}
-    {\usebeamerfont{author}\insertauthor\par}
-    
-    \vspace{0.5cm}
-    {\usebeamerfont{institute}\insertinstitute\par}
-    
-    \vspace{0.5cm}
-    {\usebeamerfont{date}\insertdate\par}
+      \vspace{0.3cm}
+      \ifdefined\insertpresentationlogo
+        \insertpresentationlogo
+      \fi
+    \end{center}
+  }
+\else
+  % Normal presentation mode: show title
+  \setbeamertemplate{title page}{
+    \begin{center}
+      \begin{beamercolorbox}[wd=0.85\paperwidth, rounded=true, shadow=true, center]{title box}
+      \usebeamerfont{title}
+      \centering
+      \parbox{0.85\paperwidth}{\centering\inserttitle}
+      \end{beamercolorbox}
+      
+      \vspace{1cm}
+      {Reporter:\usebeamerfont{author}\insertauthor\par}
+      
+      \vspace{0.5cm}
+      {\usebeamerfont{institute}\insertinstitute\par}
+      
+      \vspace{0.5cm}
+      {\usebeamerfont{date}\insertdate\par}
 
-    \vspace{0.51cm}
-    \ifdefined\insertpresentationlogo
-      \insertpresentationlogo
-    \fi
-  \end{center}
-}
+      \vspace{0.51cm}
+      \ifdefined\insertpresentationlogo
+        \insertpresentationlogo
+      \fi
+    \end{center}
+  }
+\fi
 
 %=========Presentation Header=======
 \setbeamertemplate{headline}{
@@ -134,7 +167,15 @@
       \begin{column}{0.6\paperwidth}
         \centering
         \vskip2ex
-        {\usebeamerfont{headline title} \inserttitle \par}
+        \ifnjutheme@articlereport
+          % Article report mode: show article info instead of title
+          \ifdefined\insertarticleinfo
+            {\usebeamerfont{headline title} \insertarticleinfo \par}
+          \fi
+        \else
+          % Normal mode: show title
+          {\usebeamerfont{headline title} \inserttitle \par}
+        \fi
         \vskip1ex
         {\usebeamerfont{headline author} \insertauthor \par}
         \vskip0.5ex
