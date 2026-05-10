@@ -1,0 +1,206 @@
+\documentclass{ctexbeamer}
+% ============================================================
+% NJU Beamer Theme - Enhanced Edition Demo
+% ============================================================
+\usetheme[presentation]{nju}
+\usecolortheme[presentation]{njucolor}
+\usefonttheme[onlymath]{serif}
+\renewcommand{\familydefault}{\rmdefault}
+
+% Bibliography
+\usepackage[style=verbose, backend=biber]{biblatex}
+\addbibresource{ref.bib}
+
+% Required packages
+\usepackage{graphicx,booktabs,tikz,pgfplots,amsfonts,amsmath,amsthm,hyperref,caption,newtxmath,amssymb}
+
+% Tikz Customization
+\usetikzlibrary{intersections}
+\usepgfplotslibrary{fillbetween}
+\pgfplotsset{compat=1.14}
+
+% Cite command
+\let\oldcite\cite
+\renewcommand{\cite}[1]{\footcite{#1}}
+
+% Logo in the first page
+\presentationlogo{\includegraphics[width=2.2cm]{logo/NJU-logo.jpg}}
+
+% ============================================================
+% Document Info
+% ============================================================
+\title[Enhanced NJU Theme]{Enhanced NJU Beamer Theme}
+\subtitle{A Modern and Elegant Presentation Template}
+\author[Li]{Eric Li}
+\institute{School of Artificial Intelligence, Nanjing University}
+\date{\today}
+
+% ============================================================
+\begin{document}
+
+% Title page
+\maketitle
+
+% ============================================================
+\section{Introduction}
+% ============================================================
+
+\subsection{Theme Overview}
+\begin{frame}{What is New in This Theme?}
+    This enhanced NJU Beamer template brings a fresh, modern design while preserving the classic purple-and-gold identity of Nanjing University.
+    
+    \begin{block}{Key Enhancements}
+        \begin{itemize}
+            \item \textbf{Refined Color Palette:} Deeper purple tones with elegant gold accents and semantic colors
+            \item \textbf{Modern Block Design:} Left-border accent style with subtle shadows
+            \item \textbf{Enhanced Typography:} Better hierarchy and spacing throughout
+            \item \textbf{Decorative Elements:} Gold accent lines and refined section transitions
+        \end{itemize}
+    \end{block}
+    
+    \begin{alertblock}{Important Note}
+        This template is unofficial and created for academic and research presentations at NJU.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{Color System}
+    \begin{columns}[c, onlytextwidth]
+        \begin{column}{0.48\textwidth}
+            \begin{block}{Primary Colors}
+                \begin{itemize}
+                    \item \textcolor{NJUPurple}{\textbf{NJU Purple}} --- Primary brand color
+                    \item \textcolor{NJUGold}{\textbf{NJU Gold}} --- Accent and highlight
+                    \item \textcolor{NJUPurpleDark}{\textbf{Dark Purple}} --- Depth and footer
+                \end{itemize}
+            \end{block}
+        \end{column}
+        \begin{column}{0.48\textwidth}
+            \begin{exampleblock}{Semantic Colors}
+                \begin{itemize}
+                    \item \textcolor{NJUAlert}{\textbf{Alert Red}} --- Warnings and alerts
+                    \item \textcolor{NJUExample}{\textbf{Example Green}} --- Examples and success
+                    \item \textcolor{NJUInfo}{\textbf{Info Blue}} --- Information blocks
+                \end{itemize}
+            \end{exampleblock}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{Design Philosophy}
+\begin{frame}{Design Principles}
+    The enhanced theme follows these core design principles:
+    
+    \begin{enumerate}
+        \item \textbf{Contrast:} Clear distinction between text, background, and headings
+        \item \textbf{Hierarchy:} Visual importance conveyed through size, weight, and color
+        \item \textbf{Whitespace:} Generous margins and line spacing for readability
+        \item \textbf{Consistency:} Unified visual language across all slide elements
+    \end{enumerate}
+    
+    \vspace{0.5cm}
+    \begin{exampleblock}{Typography}
+        Uses Times New Roman math fonts with professional font encoding for a clean academic look.
+    \end{exampleblock}
+\end{frame}
+
+% ============================================================
+\section{Features}
+% ============================================================
+
+\begin{frame}{Mathematical Content}
+    The template handles mathematical notation elegantly:
+    
+    \vspace{0.3cm}
+    The fundamental equation for neural networks is forward propagation:
+    \[
+    a^{(l)} = \sigma(W^{(l)}a^{(l-1)} + b^{(l)})
+    \]
+    where $\sigma$ is the activation function, $W^{(l)}$ are weights, and $b^{(l)}$ are biases at layer $l$.
+    
+    \vspace{0.3cm}
+    \begin{block}{Key Algorithms}
+        \begin{itemize}
+            \item Backpropagation uses gradient descent to optimize parameters
+            \item Convolutional Neural Networks excel in image processing
+            \item Recurrent Neural Networks handle sequential data effectively
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{Visual Elements}
+    \begin{columns}[c, onlytextwidth]
+        \begin{column}{0.55\textwidth}
+            \begin{figure}
+                \centering
+                \begin{tikzpicture}[scale=0.65]
+                    % Input layer
+                    \foreach \i in {1,...,3}
+                        \node[circle, draw=NJUPurple, fill=NJUPurplePale, minimum size=0.9cm, font=\small] (input\i) at (0,-\i) {$x_\i$};
+                    
+                    % Hidden layer
+                    \foreach \i in {1,...,4}
+                        \node[circle, draw=NJUPurple, fill=NJUPurplePale, minimum size=0.9cm, font=\small] (hidden\i) at (3.5,-\i+0.5) {$h_\i$};
+                    
+                    % Output layer
+                    \node[circle, draw=NJUPurple, fill=NJUPurplePale, minimum size=0.9cm, font=\small] (output) at (7,-2) {$y$};
+                    
+                    % Connections
+                    \foreach \i in {1,...,3}
+                        \foreach \j in {1,...,4}
+                            \draw[->, color=NJUGoldDark, thick] (input\i) -- (hidden\j);
+                    
+                    \foreach \i in {1,...,4}
+                        \draw[->, color=NJUGoldDark, thick] (hidden\i) -- (output);
+                    
+                    % Labels
+                    \node[above, font=\footnotesize\bfseries, color=NJUPurple] at (0,0) {Input};
+                    \node[above, font=\footnotesize\bfseries, color=NJUPurple] at (3.5,0) {Hidden};
+                    \node[above, font=\footnotesize\bfseries, color=NJUPurple] at (7,0) {Output};
+                \end{tikzpicture}
+                \caption{Neural Network Architecture}
+            \end{figure}
+        \end{column}
+        \begin{column}{0.43\textwidth}
+            \begin{block}{Applications}
+                \begin{itemize}
+                    \item Healthcare diagnostics
+                    \item Autonomous vehicles
+                    \item Natural language processing
+                    \item Computer vision systems
+                \end{itemize}
+            \end{block}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{Tables and Data}
+    \begin{table}
+        \centering
+        \caption{Performance Comparison of ML Models}
+        \begin{tabular}{lccc}
+            \toprule
+            \textbf{Model} & \textbf{Accuracy} & \textbf{F1 Score} & \textbf{Latency} \\
+            \midrule
+            ResNet-50 & 94.2\% & 0.93 & 12ms \\
+            VGG-16 & 92.8\% & 0.91 & 28ms \\
+            Transformer & 96.1\% & 0.95 & 45ms \\
+            \bottomrule
+        \end{tabular}
+    \end{table}
+    
+    \vspace{0.3cm}
+    \begin{alertblock}{Observation}
+        Transformer models achieve superior accuracy at the cost of increased computational latency.
+    \end{alertblock}
+\end{frame}
+
+% ============================================================
+\section{Reference}
+% ============================================================
+
+\begin{frame}[allowframebreaks]{Bibliography}
+    \nocite{*}
+    \printbibliography
+\end{frame}
+
+\end{document}

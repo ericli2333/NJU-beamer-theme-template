@@ -1,6 +1,7 @@
-% Custom Unofficial Beamerposter Theme: njutheme
+% Custom Unofficial Beamer Theme: njutheme (Enhanced Edition)
+% Beautified version with modern design elements
 
-\ProvidesPackage{beamerthemenju}[2025/09/04 NJU Custom Theme Unofficial]
+\ProvidesPackage{beamerthemenju}[2025/04/24 NJU Custom Theme Enhanced Unofficial]
 \RequirePackage{kvoptions}
 \RequirePackage{etoolbox}
 
@@ -12,11 +13,13 @@
 \DeclareBoolOption[false]{presentation}
 \DeclareBoolOption[false]{articlereport}
 \ProcessKeyvalOptions*
+
 \ifnjutheme@presentation
     \RequirePackage{ragged2e}
+    \RequirePackage{tikz}
     \setbeamerfont{headline institute}{size=\Large}
     \setbeamertemplate{section in toc}[sections numbered]
-\else 
+\else
 % ======================
 % Font Setup (Times New Roman Look for pdfLaTeX)
 % ======================
@@ -27,6 +30,7 @@
 \RequirePackage{changepage}
 \RequirePackage{pgffor}
 \RequirePackage{xcolor}
+\RequirePackage{tikz}
 
 \usefonttheme{professionalfonts}
 
@@ -39,7 +43,8 @@
 \setbeamerfont{block title}{size=\large, series=\bfseries}
 \setbeamerfont{heading}{series=\bfseries}
 \setbeamerfont{footline}{size=\normalsize}
-\setbeamerfont{frametitle}{size=\Large}
+\setbeamerfont{frametitle}{size=\Large, series=\bfseries}
+\setbeamerfont{framesubtitle}{size=\normalsize}
 \setbeamerfont{author}{size=\small}
 \setbeamerfont{institute}{size=\small}
 \setbeamerfont{date}{size=\small}
@@ -57,7 +62,7 @@
 \newcommand{\logoright}[1]{\newcommand{\insertlogoright}{#1}}
 
 % ======================
-% Header / Title Bar
+% Title Page (Enhanced)
 % ======================
 \ifnjutheme@presentation
 
@@ -69,7 +74,7 @@
         \usebeamerfont{title}
         \centering
         \begin{center}
-          \insertarticleinfo 
+          \insertarticleinfo
         \end{center}
       \fi
       
@@ -89,25 +94,38 @@
     \end{center}
   }
 \else
-  % Normal presentation mode: show title
+  % Normal presentation mode: show title with enhanced styling
   \setbeamertemplate{title page}{
     \begin{center}
-      \begin{beamercolorbox}[wd=0.85\paperwidth, rounded=true, shadow=true, center]{title box}
-      \usebeamerfont{title}
-      \centering
-      \parbox{0.85\paperwidth}{\centering\inserttitle}
+      % Top accent bar
+      \begin{beamercolorbox}[wd=0.9\paperwidth, ht=0.3ex, dp=0ex]{headline rule}
       \end{beamercolorbox}
       
-      \vspace{1cm}
-      {Reporter:\usebeamerfont{author}\insertauthor\par}
+      \vspace{0.3cm}
       
-      \vspace{0.5cm}
-      {\usebeamerfont{institute}\insertinstitute\par}
+      % Main title box with purple background
+      \begin{beamercolorbox}[wd=0.85\paperwidth, rounded=true, shadow=true, center, sep=8pt]{title box}
+      \usebeamerfont{title}
+      \centering
+      \parbox{0.8\paperwidth}{\centering\inserttitle}
+      \end{beamercolorbox}
       
-      \vspace{0.5cm}
-      {\usebeamerfont{date}\insertdate\par}
+      % Bottom gold accent line
+      \begin{beamercolorbox}[wd=0.85\paperwidth, ht=0.15ex, dp=0ex, center]{headline rule}
+      \end{beamercolorbox}
+      
+      \vspace{0.8cm}
+      
+      % Author with subtle styling
+      {\usebeamerfont{author}\color{NJUPurple}\bfseries\insertauthor\par}
+      
+      \vspace{0.4cm}
+      {\usebeamerfont{institute}\color{NJUGray}\insertinstitute\par}
+      
+      \vspace{0.4cm}
+      {\usebeamerfont{date}\color{NJUGray}\insertdate\par}
 
-      \vspace{0.51cm}
+      \vspace{0.5cm}
       \ifdefined\insertpresentationlogo
         \insertpresentationlogo
       \fi
@@ -115,16 +133,16 @@
   }
 \fi
 
-%=========Presentation Header=======
+%=========Presentation Header (Enhanced)=======
 \setbeamertemplate{headline}{
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=2.5ex, dp=1.5ex, center]{headline left}%
+    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=2.8ex, dp=1.2ex, center]{headline left}%
       \centering
       \vspace{-1ex}
       \usebeamerfont{section in head/foot} \insertsectionhead
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=2.5ex, dp=1.5ex, center]{headline right}%
+    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=2.8ex, dp=1.2ex, center]{headline right}%
       \centering
       \vspace{-0.85ex}
       \usebeamerfont{section in head/foot}
@@ -197,11 +215,11 @@
 }
 \fi
 
-%==================== frame title ==========================
+%==================== Frame Title (Enhanced) ==========================
 \setbeamertemplate{frametitle}{
     \vskip-0.2ex
     \ifnjutheme@presentation
-        \begin{beamercolorbox}[wd=\paperwidth, ht=3ex, dp=1.5ex, shadow=true]{frametitle}
+        \begin{beamercolorbox}[wd=\paperwidth, ht=3.2ex, dp=1.2ex, shadow=true]{frametitle}
             \ifx\insertframetitle\empty
             \else
                 \hbox to \paperwidth{%
@@ -209,14 +227,17 @@
                         \hspace{1.5ex}\usebeamerfont{frametitle}\insertframetitle%
                     }%
                     \makebox[0.15\paperwidth][r]{%
-                        \raisebox{-0.5ex}{\includegraphics[height=3.0ex]{logo/NJU-gold.png}}%
+                        \raisebox{-0.5ex}{\includegraphics[height=2.8ex]{logo/NJU-gold.png}}%
                         \hspace{1ex}%
                     }%
                 }
             \fi
         \end{beamercolorbox}
+        % Decorative gold underline
+        \begin{beamercolorbox}[wd=\paperwidth, ht=0.15ex, dp=0ex]{headline rule}
+        \end{beamercolorbox}
     \else
-        \begin{beamercolorbox}[wd=\paperwidth, ht=3ex, dp=1.5ex, shadow=true]{frametitle}
+        \begin{beamercolorbox}[wd=\paperwidth, ht=3.2ex, dp=1.2ex, shadow=true]{frametitle}
             \usebeamerfont{frametitle}\hspace{1.5ex}\insertframetitle
         \end{beamercolorbox}
     \fi
@@ -224,7 +245,7 @@
 }
 
 % ======================
-% Footer Content
+% Footer Content (Enhanced)
 % ======================
 \ifnjutheme@presentation
 \setbeamerfont{author in head/foot}{size=\scriptsize}
@@ -233,9 +254,12 @@
 \setbeamerfont{section in head/foot}{size=\scriptsize}
 \setbeamerfont{subsection in head/foot}{size=\scriptsize}
 
-%==========Presentation footer============
+%==========Presentation footer (Enhanced)============
 \setbeamertemplate{footline}{
-
+  % Decorative top line of footer
+  \begin{beamercolorbox}[wd=\paperwidth, ht=0.1ex, dp=0ex]{headline rule}
+  \end{beamercolorbox}
+  
   % ===== Bottom: Custom footer =====
   \leavevmode%
   \hbox{%
@@ -247,20 +271,20 @@
     \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.3ex,dp=1.5ex,center]{footline center}%
       \centering
       \vspace{-0.8ex}
-      \usebeamerfont{section in head/foot} 
+      \usebeamerfont{section in head/foot}
       \insertshorttitle
     \end{beamercolorbox}%
     \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.3ex,dp=1.5ex,right]{footline right}%
       \centering
       \vspace{-1.2 ex}
-      \usebeamerfont{section in head/foot} 
+      \usebeamerfont{section in head/foot}
       \insertshortdate{}\hfill%
-      \insertframenumber{}/\inserttotalframenumber\hspace{1ex}
+      \insertframenumber{} / \inserttotalframenumber\hspace{1ex}
     \end{beamercolorbox}%
   }
 }
 
-\else 
+\else
 %=============Poster footer=============
 \newcommand{\footercontent}[1]{\newcommand{\insertfootercontent}{#1}}
 
@@ -273,35 +297,116 @@
   \fi
 }
 \fi
+
 % ================= Box Settings ==============
 \RequirePackage{tcolorbox}
 \tcbuselibrary{skins, breakable, theorems}
 
-% Define common tcolorbox style keys
+% Define enhanced tcolorbox style keys
 \tcbset{
   fancyblockstyle/.style={
     enhanced,
-    rounded corners,
     colframe=NJUPurple,
-    coltitle=NJUGold,
+    coltitle=NJUWhite,
     colbacktitle=NJUPurple,
+    colback=NJULightGray,
     title filled=true,
-    boxrule=1.5pt,
-    fonttitle=\bfseries,
+    boxrule=0.8pt,
+    toprule=0pt,
+    bottomrule=0pt,
+    leftrule=3pt,
+    rightrule=0pt,
+    sharp corners,
+    fonttitle=\bfseries\large,
     breakable,
-    attach boxed title to top left={xshift=5mm, yshift=-2mm},
-    boxed title style={rounded corners, size=small}
+    attach boxed title to top left={xshift=5mm, yshift=-3mm},
+    boxed title style={
+      sharp corners,
+      size=small,
+      boxrule=0pt,
+      leftrule=0pt,
+      rightrule=0pt,
+      toprule=0pt,
+      bottomrule=0pt
+    },
+    left=8pt,
+    right=8pt,
+    top=10pt,
+    bottom=8pt,
+    shadow={1pt}{-1pt}{0pt}{black!20}
+  },
+  alertblockstyle/.style={
+    enhanced,
+    colframe=NJUAlert,
+    coltitle=NJUWhite,
+    colbacktitle=NJUAlert,
+    colback=NJULightGray,
+    title filled=true,
+    boxrule=0.8pt,
+    toprule=0pt,
+    bottomrule=0pt,
+    leftrule=3pt,
+    rightrule=0pt,
+    sharp corners,
+    fonttitle=\bfseries\large,
+    breakable,
+    attach boxed title to top left={xshift=5mm, yshift=-3mm},
+    boxed title style={
+      sharp corners,
+      size=small,
+      boxrule=0pt,
+      leftrule=0pt,
+      rightrule=0pt,
+      toprule=0pt,
+      bottomrule=0pt
+    },
+    left=8pt,
+    right=8pt,
+    top=10pt,
+    bottom=8pt,
+    shadow={1pt}{-1pt}{0pt}{black!20}
+  },
+  exampleblockstyle/.style={
+    enhanced,
+    colframe=NJUExample,
+    coltitle=NJUWhite,
+    colbacktitle=NJUExample,
+    colback=NJULightGray,
+    title filled=true,
+    boxrule=0.8pt,
+    toprule=0pt,
+    bottomrule=0pt,
+    leftrule=3pt,
+    rightrule=0pt,
+    sharp corners,
+    fonttitle=\bfseries\large,
+    breakable,
+    attach boxed title to top left={xshift=5mm, yshift=-3mm},
+    boxed title style={
+      sharp corners,
+      size=small,
+      boxrule=0pt,
+      leftrule=0pt,
+      rightrule=0pt,
+      toprule=0pt,
+      bottomrule=0pt
+    },
+    left=8pt,
+    right=8pt,
+    top=10pt,
+    bottom=8pt,
+    shadow={1pt}{-1pt}{0pt}{black!20}
   }
 }
 
 \newtcolorbox{alignblock}[1]{
-    \fancyblockstyle,
+    fancyblockstyle,
     title={#1},
-    before upper={\raggedright} % 强制内容左对齐
+    before upper={\raggedright}
 }
 
 \newtcolorbox{fancyblock}[1]{
-    \fancyblockstyle,
+    fancyblockstyle,
     title={#1}
 }
 
@@ -319,11 +424,7 @@
 
 % Alert block
 \setbeamertemplate{block alerted begin}{
-  \begin{tcolorbox}[fancyblockstyle, 
-    colframe=red!75!black,
-    colbacktitle=red!75!black,
-    title=\insertblocktitle
-  ]
+  \begin{tcolorbox}[alertblockstyle, title=\insertblocktitle]
   \justifying
 }
 \setbeamertemplate{block alerted end}{
@@ -333,56 +434,85 @@
 
 % Example block
 \setbeamertemplate{block example begin}{
-  \begin{tcolorbox}[fancyblockstyle,
-    colframe=green!50!black,
-    colbacktitle=green!50!black,
-    title=\insertblocktitle
-  ]
+  \begin{tcolorbox}[exampleblockstyle, title=\insertblocktitle]
   \justifying
 }
 \setbeamertemplate{block example end}{
   \end{tcolorbox}
   \vspace*{1ex}
 }
+
 %===================== Table and Images===============
 \setbeamertemplate{caption}[numbered]
 \setbeamertemplate{caption label separator}{:\hspace{0.3em}}
 \setbeamertemplate{caption label format}{\insertcaptionname~\insertcaptionnumber\hspace{0.2em}}
 
-%===================== Section/Subsection Colorbox Styles ===============
-% 定义section页面的colorbox样式
+%===================== Itemize/Enumerate Styling ===============
+\setbeamertemplate{itemize item}{\color{NJUPurple}\scriptsize$\blacksquare$}
+\setbeamertemplate{itemize subitem}{\color{NJUPurpleLight}\scriptsize$\blacktriangleright$}
+\setbeamertemplate{itemize subsubitem}{\color{NJUGoldDark}\tiny$\circ$}
+
+\setbeamertemplate{enumerate items}[circle]
+\setbeamercolor{enumerate item}{fg=NJUWhite, bg=NJUPurple}
+\setbeamercolor{enumerate subitem}{fg=NJUWhite, bg=NJUPurpleLight}
+\setbeamercolor{enumerate subsubitem}{fg=NJUWhite, bg=NJUGoldDark}
+\setbeamertemplate{enumerate item}{%
+  \usebeamercolor[bg]{enumerate item}%
+  \begin{tikzpicture}
+    \node[circle, fill=NJUPurple, inner sep=1.5pt, text=NJUWhite, font=\bfseries\footnotesize] {\insertenumlabel};
+  \end{tikzpicture}%
+}
+\setbeamertemplate{enumerate subitem}{%
+  \usebeamercolor[bg]{enumerate subitem}%
+  \begin{tikzpicture}
+    \node[circle, fill=NJUPurpleLight, inner sep=1.2pt, text=NJUWhite, font=\bfseries\tiny] {\insertenumlabel.\insertsubenumlabel};
+  \end{tikzpicture}%
+}
+
+%===================== Section/Subsection Colorbox Styles (Enhanced) ===============
+% Enhanced section page with modern design
 \newcommand{\sectioncolorbox}[1]{%
   \begin{tcolorbox}[
     enhanced,
     sharp corners,
-    colback=NJUPurple!20,
+    colback=NJUPurplePale,
     colframe=NJUPurple,
-    boxrule=2pt,
+    boxrule=0pt,
+    leftrule=5pt,
+    rightrule=0pt,
+    toprule=0pt,
+    bottomrule=0pt,
     arc=0mm,
     width=\textwidth,
     height=10ex,
     valign=center,
     halign=center,
-    fontupper=\huge\bfseries\color{NJUPurple}
+    fontupper=\huge\bfseries\color{NJUPurple},
+    shadow={2pt}{-2pt}{0pt}{black!15}
   ]
   #1
   \end{tcolorbox}%
 }
 
-% 定义subsection页面的colorbox样式
+% Enhanced subsection page with modern design
 \newcommand{\subsectioncolorbox}[1]{%
   \begin{tcolorbox}[
     enhanced,
     sharp corners,
-    colback=NJUGold!20,
-    colframe=NJUGold,
-    boxrule=2pt,
+    colback=NJUGoldLight,
+    colframe=NJUGoldDark,
+    boxrule=0pt,
+    leftrule=5pt,
+    rightrule=0pt,
+    toprule=0pt,
+    bottomrule=0pt,
     arc=0mm,
     width=\textwidth,
     height=8ex,
     valign=center,
     halign=center,
-    fontupper=\LARGE\bfseries\color{NJUGold}
+    fontupper=\LARGE\bfseries\color{NJUPurpleDark},
+    shadow={2pt}{-2pt}{0pt}{black!15}
   ]
   #1
   \end{tcolorbox}%
@@ -391,15 +521,15 @@
 %===================== Table of Content Settings===============
 \AtBeginSection[]{
 	\begin{frame}
-    \sectioncolorbox{\Roman{section} \insertsection}
-    \vspace{1ex}
+    \sectioncolorbox{\Roman{section} \quad \insertsection}
+    \vspace{1.5ex}
 		  \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
 	\end{frame}
 }
 \AtBeginSubsection[]{
 	\begin{frame}
-    \subsectioncolorbox{\Roman{section}-\Roman{subsection} \insertsubsection}
-    \vspace{1ex}
+    \subsectioncolorbox{\Roman{section}-\Roman{subsection} \quad \insertsubsection}
+    \vspace{1.5ex}
 		  \tableofcontents[sectionstyle=show/shaded,subsectionstyle=show/shaded/hide,subsubsectionstyle=show/shaded/hide]
 	\end{frame}
 }
