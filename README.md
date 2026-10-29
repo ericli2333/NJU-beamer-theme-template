@@ -15,6 +15,17 @@ original repository: [FSU Beamer](https://github.com/mrislambd/FSU-math-poster-t
 - Change the blocking enviroments to `tcolorbox`
 - Add logo on the top of each slide
 
+## Presentation Mode Refresh (v0.2.0)
+
+This release refreshes the presentation layout:
+
+- A compact dark section banner: 9 pt label in a 0.60 cm bar, gold rules, section dots.
+- A 15 pt frame title in a 4.4 ex purple bar; the title and the 3.2 ex logo are vertically centred.
+- A 9 pt footer in a 5.2 ex bar; the background covers the text, the date is padded from the colour edge, and the original purple/gold/cream colours are kept.
+- `lmodern` is loaded for scalable Latin fonts; box-badness settings live in the theme.
+
+The poster and article-report modes are unchanged.
+
 ## Article Report Mode
 
 The template now supports an **article report mode** that is particularly useful for group meetings and academic presentations where you need to report on a specific article or paper.

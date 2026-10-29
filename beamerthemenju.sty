@@ -17,6 +17,9 @@
 \ifnjutheme@presentation
     \RequirePackage{ragged2e}
     \RequirePackage{tikz}
+    \RequirePackage{lmodern}
+    \hbadness=10000
+    \vbadness=10000
     \setbeamerfont{headline institute}{size=\Large}
     \setbeamertemplate{section in toc}[sections numbered]
 \else
@@ -134,40 +137,40 @@
 \fi
 
 %=========Presentation Header (Enhanced)=======
-\setbeamertemplate{headline}{
-  \leavevmode%
-  \hbox{%
-    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=2.8ex, dp=1.2ex, center]{headline left}%
-      \centering
-      \vspace{-1ex}
-      \usebeamerfont{section in head/foot} \insertsectionhead
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=0.5\paperwidth, ht=2.8ex, dp=1.2ex, center]{headline right}%
-      \centering
-      \vspace{-0.85ex}
-      \usebeamerfont{section in head/foot}
-      \ifx\insertframetitle\empty
-        % Do nothing
-      \else
-        \ifnum\value{framenumber}=1
-          % Title page: do nothing
-        \else
-          \ifx\insertframetitle\tableofcontentsname
-            % TOC page: do nothing
+\setbeamertemplate{headline}{%
+  \ifx\insertsectionhead\empty
+  \else
+    \begingroup
+    \setlength{\fboxsep}{0pt}%
+    \nointerlineskip
+    \hbox{%
+      \colorbox{NJUPurpleDark}{%
+        \parbox[b][0.60cm][c]{\dimexpr0.60\paperwidth-0.6pt\relax}{%
+          \centering\color{NJUGold}%
+          \fontsize{9}{10.5}\selectfont\bfseries\insertsectionhead}}%
+      {\color{NJUGoldDark}\rule{1.2pt}{0.60cm}}%
+      \colorbox{NJUPurpleDark!80!black}{%
+        \parbox[b][0.60cm][c]{\dimexpr0.40\paperwidth-0.6pt\relax}{%
+          \centering\color{NJUGold}%
+          \ifx\insertsectionhead\empty
           \else
-            \foreach \n in {\insertsectionstartpage,...,\insertsectionendpage}{
-              \ifnum\n=\insertframenumber
-                \hyperlink{slide\n}{\raisebox{0.15ex}{\small$\bullet$}}
-              \else
-                \hyperlink{slide\n}{\color{gray!60}\raisebox{0.15ex}{\small$\bullet$}}
-              \fi
-              \hspace{0.2em}
-            }
-          \fi
-        \fi
-      \fi
-    \end{beamercolorbox}%
-  }
+            \ifx\insertframetitle\tableofcontentsname
+            \else
+              \foreach \n in {\insertsectionstartpage,...,\insertsectionendpage}{%
+                \ifnum\n=\insertframenumber
+                  \hyperlink{slide\n}{\textcolor{NJUGold}{\raisebox{0.15ex}{\normalsize$\bullet$}}}%
+                \else
+                  \hyperlink{slide\n}{\textcolor{gray!55}{\raisebox{0.15ex}{\normalsize$\bullet$}}}%
+                \fi
+                \hspace{0.55em}%
+              }%
+            \fi
+          \fi}}%
+    }%
+    \nointerlineskip
+    {\color{NJUGoldDark}\rule{\paperwidth}{1.2pt}}%
+    \endgroup
+  \fi
 }
 
 \else
@@ -217,21 +220,23 @@
 
 %==================== Frame Title (Enhanced) ==========================
 \setbeamertemplate{frametitle}{
-    \vskip-0.2ex
+    \nointerlineskip
     \ifnjutheme@presentation
         \begin{beamercolorbox}[wd=\paperwidth, ht=3.2ex, dp=1.2ex, shadow=true]{frametitle}
+            \raisebox{-0.4ex}{%
             \ifx\insertframetitle\empty
             \else
                 \hbox to \paperwidth{%
-                    \makebox[0.85\paperwidth][l]{%
+                    \makebox[0.88\paperwidth][l]{%
                         \hspace{1.5ex}\usebeamerfont{frametitle}\insertframetitle%
                     }%
-                    \makebox[0.15\paperwidth][r]{%
-                        \raisebox{-0.5ex}{\includegraphics[height=2.8ex]{logo/NJU-gold.png}}%
+                    \makebox[0.12\paperwidth][r]{%
+                        \raisebox{-0.5ex}{\includegraphics[height=3.2ex]{logo/NJU-gold.png}}%
                         \hspace{1ex}%
                     }%
-                }
+                }%
             \fi
+            }%
         \end{beamercolorbox}
         % Decorative gold underline
         \begin{beamercolorbox}[wd=\paperwidth, ht=0.15ex, dp=0ex]{headline rule}
@@ -251,37 +256,30 @@
 \setbeamerfont{author in head/foot}{size=\scriptsize}
 \setbeamerfont{title in head/foot}{size=\scriptsize}
 \setbeamerfont{date in head/foot}{size=\scriptsize}
-\setbeamerfont{section in head/foot}{size=\scriptsize}
+\setbeamerfont{section in head/foot}{size=\fontsize{9}{11}\selectfont}
 \setbeamerfont{subsection in head/foot}{size=\scriptsize}
 
 %==========Presentation footer (Enhanced)============
-\setbeamertemplate{footline}{
-  % Decorative top line of footer
+\setbeamertemplate{footline}{%
   \begin{beamercolorbox}[wd=\paperwidth, ht=0.1ex, dp=0ex]{headline rule}
-  \end{beamercolorbox}
-  
-  % ===== Bottom: Custom footer =====
+  \end{beamercolorbox}%
   \leavevmode%
   \hbox{%
-    \begin{beamercolorbox}[wd=0.2\paperwidth,ht=2.3ex,dp=1.5ex,center]{footline left}%
-        \centering
-        \vspace{-0.8 ex}
-      \usebeamerfont{section in head/foot} \hspace{1ex}\insertshortauthor
-    \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=0.5\paperwidth,ht=2.3ex,dp=1.5ex,center]{footline center}%
+    \begin{beamercolorbox}[wd=0.2\paperwidth,ht=3.8ex,dp=1.4ex,center]{footline left}%
       \centering
-      \vspace{-0.8ex}
-      \usebeamerfont{section in head/foot}
-      \insertshorttitle
+      \usebeamerfont{section in head/foot}\hspace{1ex}\insertshortauthor
     \end{beamercolorbox}%
-    \begin{beamercolorbox}[wd=0.3\paperwidth,ht=2.3ex,dp=1.5ex,right]{footline right}%
+    \begin{beamercolorbox}[wd=0.5\paperwidth,ht=3.8ex,dp=1.4ex,center]{footline center}%
       \centering
-      \vspace{-1.2 ex}
-      \usebeamerfont{section in head/foot}
-      \insertshortdate{}\hfill%
-      \insertframenumber{} / \inserttotalframenumber\hspace{1ex}
+      \usebeamerfont{section in head/foot}\insertshorttitle
     \end{beamercolorbox}%
-  }
+    \begin{beamercolorbox}[wd=0.3\paperwidth,ht=3.8ex,dp=1.4ex,right]{footline right}%
+      \centering
+      \usebeamerfont{section in head/foot}%
+      \hspace*{2.5ex}\insertshortdate\hfill
+      \insertframenumber{}/\inserttotalframenumber\hspace{1ex}
+    \end{beamercolorbox}%
+  }%
 }
 
 \else
