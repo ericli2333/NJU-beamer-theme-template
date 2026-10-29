@@ -7,9 +7,8 @@
 \usefonttheme[onlymath]{serif}
 \renewcommand{\familydefault}{\rmdefault}
 
-% Bibliography
-\usepackage[style=verbose, backend=biber]{biblatex}
-\addbibresource{ref.bib}
+% Citations
+\usepackage{nju-cite}
 
 % Required packages
 \usepackage{graphicx,booktabs,tikz,pgfplots,amsfonts,amsmath,amsthm,hyperref,caption,newtxmath,amssymb}
@@ -18,10 +17,6 @@
 \usetikzlibrary{intersections}
 \usepgfplotslibrary{fillbetween}
 \pgfplotsset{compat=1.14}
-
-% Cite command
-\let\oldcite\cite
-\renewcommand{\cite}[1]{\footcite{#1}}
 
 % Logo in the first page
 \presentationlogo{\includegraphics[width=2.2cm]{logo/NJU-logo.jpg}}
@@ -200,7 +195,8 @@
 
 \begin{frame}[allowframebreaks]{Bibliography}
     \nocite{*}
-    \printbibliography
+    \bibliographystyle{iclr2027_conference}
+    \bibliography{ref}
 \end{frame}
 
 \end{document}

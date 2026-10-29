@@ -5,8 +5,7 @@
 % Uncomment the next line if you want your itemize items to appear as a bullet, instead of triangular shapes
 \usefonttheme[onlymath]{serif}
 \renewcommand{\familydefault}{\rmdefault}
-\usepackage[style=verbose, backend=bibtex]{biblatex}
-\addbibresource{ref.bib}
+\usepackage{nju-cite}
 %\setbeamertemplate{itemize item}{$\bullet$}
 
 % Include the required packages here
@@ -18,10 +17,6 @@
 
 % PGFPlots config
 \pgfplotsset{compat=1.14}
-
-% cite command
-\let\oldcite\cite
-\renewcommand{\cite}[1]{\footcite{#1}}
 
 
 % Logo in the first page, comment out if don't wanted
@@ -42,7 +37,7 @@
 % A subsection. May contain multiple subsections
 \subsection{Artificial Intelligence}
 \begin{frame}{What is Artificial Intelligence?}
-    This template is modified from the original FSU template by Rafiq Islam\cite{fsumathposter25} to create an NJU AI School presentation template\cite{njubeamerpresent25}. Here is how you use plain text. Here is how you can use a block to write some important information.
+    This template is modified from the original FSU template by \citet{fsumathposter25} to create an NJU AI School presentation template\citet{njubeamerpresent25}. Here is how you use plain text. Here is how you can use a block to write some important information.
     \begin{block}{Artificial Intelligence}
         Artificial Intelligence is the study and design of intelligent agents that can perceive their environment and take actions to maximize their chances of success. Modern AI encompasses machine learning, deep learning, natural language processing, computer vision, and robotics.
     \end{block}
@@ -145,6 +140,7 @@ This template is modified from the original FSU template\footnote{Based on FSU M
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \section{Reference}
 \begin{frame}[allowframebreaks]{Bibliography}
-    \printbibliography
+    \bibliographystyle{iclr2027_conference}
+    \bibliography{ref}
 \end{frame}
 \end{document}

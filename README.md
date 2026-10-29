@@ -8,8 +8,9 @@ original repository: [FSU Beamer](https://github.com/mrislambd/FSU-math-poster-t
 - Added NJUPurple color and adjusted background and text colors accordingly.
 - Replaced FSU logo with NJU logo.
 - Adjusted document class and font settings to better suit NJU presentation style.
-- Updated bibliography management to use `biblatex` for better citation handling.
-- Change the cite style to footcite for better readability in presentations.
+- Replaced `biblatex` with `natbib` author-year citations in the ICLR style (round parentheses, semicolon separator).
+- Added `nju-cite.sty`: robust `\citet`/`\citep`, gold citations, and an automatic brief footnote on the citation page.
+- Added `make_shortrefs.py` and `iclr2027_conference.bst`; paper titles are blue, venue names gold, URLs keep their default style.
 - Add a new frame before each section and subsection for better structure.
 - Change font settings of math and Chinese
 - Change the blocking enviroments to `tcolorbox`
@@ -46,6 +47,40 @@ Then set the article information using the `\articleinfo` command:
 
 ```latex
 \articleinfo{\includegraphics[height=0.4\textheight]{images/your-article-image.png}}
+```
+
+## Citations (v0.3.0)
+
+The examples use `natbib` author-year citations with the ICLR 2027 setup:
+
+```latex
+\usepackage{nju-cite}
+...
+Following \citet{he2016deep}, the residual connection is ...
+\citep{vaswani2017attention} introduces self-attention.
+```
+
+- `\citet{key}` prints the author-year citation in gold and automatically adds a
+  brief footnote on the same page (first author, year, title, venue).
+- `\citep{key}` prints the parenthetical author-year citation.
+- `nju-cite.sty` uses `\setcitestyle{authoryear,round,citesep={;},aysep={,},yysep={;}}`
+  and makes `\citet`/`\citep` robust under beamer, so no `\protect` is needed.
+- The footnote text is generated from the `.bib` file by:
+
+  ```bash
+  python3 make_shortrefs.py ref.bib
+  ```
+
+  The generated `shortrefs.tex` is read automatically. An unknown key falls back
+  to the plain author-year citation.
+- `iclr2027_conference.bst` provides the reference formatting: full author lists,
+  blue paper titles, gold venue names, and the usual URL style.
+
+Build an example with:
+
+```bash
+python3 make_shortrefs.py ref.bib
+latexmk -xelatex presentation.tex
 ```
 
 ## Examples

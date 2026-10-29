@@ -1,5 +1,21 @@
 # Changelog
 
+## [v0.3.0] - 2026-10-29
+
+### Added
+
+- `nju-cite.sty`: natbib author-year citations (ICLR-style round/semicolon),
+  robust `\citet`/`\citep`, gold citations and automatic brief footnotes.
+- `make_shortrefs.py`: generates brief footnote text from a `.bib` file.
+- `iclr2027_conference.bst`: reference formatting with blue paper titles and
+  gold venue names.
+- Citation examples in `presentation.tex`, `demo.tex` and `articlereport.tex`.
+
+### Changed
+
+- Removed the `biblatex`/`footcite` setup from the examples.
+- README documents the citation workflow and build command.
+
 ## [v0.2.0] - 2026-10-29
 
 ### Changed (presentation mode)

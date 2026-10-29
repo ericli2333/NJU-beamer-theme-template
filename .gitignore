@@ -4,4 +4,11 @@
 *.pdf
 *.nav
 *.snm
-*-blx.bib
+*-blx.bib*.log
+*.out
+*.toc
+*.xdv
+*.fls
+*.fdb_latexmk
+*.bcf
+*.run.xml
